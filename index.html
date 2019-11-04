@@ -209,6 +209,122 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/04/ble%E7%A9%BA%E4%B8%AD%E5%8C%85%E6%A0%BC%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="tony2ty">
+      <meta itemprop="description" content="涉猎的主要编程语言为C，领域为BLE、RTOS和IOT等。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="理性乐观π">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/04/ble%E7%A9%BA%E4%B8%AD%E5%8C%85%E6%A0%BC%E5%BC%8F/" class="post-title-link" itemprop="url">ble空中包格式</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-11-04 21:33:01 / 修改时间：22:09:36" itemprop="dateCreated datePublished" datetime="2019-11-04T21:33:01+08:00">2019-11-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/BLE/" itemprop="url" rel="index">
+                    <span itemprop="name">BLE</span>
+                  </a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>340</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="BLE空中包格式"><a href="#BLE空中包格式" class="headerlink" title="BLE空中包格式"></a>BLE空中包格式</h2><h3 id="数据包格式"><a href="#数据包格式" class="headerlink" title="数据包格式"></a>数据包格式</h3><p>广播通道包与数据通道包格式见下图</p>
+<p>数据包包含前导（Preamble）、访问地址（Access Address）、PDU（）、CRC（校验）4个部分。</p>
+<p><img src="/2019/11/04/ble%E7%A9%BA%E4%B8%AD%E5%8C%85%E6%A0%BC%E5%BC%8F/image-20191104214241455.png" alt="image-20191104214241455"></p>
+<h4 id="前导（Preamble）"><a href="#前导（Preamble）" class="headerlink" title="前导（Preamble）"></a>前导（Preamble）</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>字节数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LE 1M PHY</td>
+<td>1</td>
+</tr>
+<tr>
+<td>LE 2M PHY</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>包传输时间是44~2120us。</p>
+<p>前导的作用</p>
+<p>接收端实现频率同步、符号定时评估与自动增益控制</p>
+<p>前导数据与访问地址有关，前导码第一位与<code>Access Address</code>的LSB一致，LE 1M PHY取值为0x55或0xAA，见下图</p>
+<p><img src="/2019/11/04/ble%E7%A9%BA%E4%B8%AD%E5%8C%85%E6%A0%BC%E5%BC%8F/image-20191104215432454.png" alt="image-20191104215432454"></p>
+<p><img src="/2019/11/04/ble%E7%A9%BA%E4%B8%AD%E5%8C%85%E6%A0%BC%E5%BC%8F/image-20191104214050525.png" alt="image-20191104214050525"></p>
+<h3 id="访问地址"><a href="#访问地址" class="headerlink" title="访问地址"></a>访问地址</h3><h4 id="广播通道"><a href="#广播通道" class="headerlink" title="广播通道"></a>广播通道</h4><p>所有广播通道数据包的访问地址都是<code>0X8E89BED6</code></p>
+<h4 id="数据通道"><a href="#数据通道" class="headerlink" title="数据通道"></a>数据通道</h4><p>在两个设备建立连接后，访问地址是随机的，每次都不一样</p>
+<h3 id="PDU"><a href="#PDU" class="headerlink" title="PDU"></a>PDU</h3><h4 id="广播通道-1"><a href="#广播通道-1" class="headerlink" title="广播通道"></a>广播通道</h4><p><img src="/2019/11/04/ble%E7%A9%BA%E4%B8%AD%E5%8C%85%E6%A0%BC%E5%BC%8F/image-20191104220829648.png" alt="image-20191104220829648"></p>
+<h4 id="数据通道-1"><a href="#数据通道-1" class="headerlink" title="数据通道"></a>数据通道</h4><h3 id="CRC"><a href="#CRC" class="headerlink" title="CRC"></a>CRC</h3><h3 id="抓包数据"><a href="#抓包数据" class="headerlink" title="抓包数据"></a>抓包数据</h3><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>VOL6 PartB：Link Layer Specification</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/04/ONENET%E8%AF%BB%E5%8F%96%E4%B8%8E%E6%8E%A7%E5%88%B6%E9%BA%92%E9%BA%9F%E5%BA%A7MINI%E5%BC%80%E5%8F%91%E6%9D%BFLED%E7%8A%B6%E6%80%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -640,19 +756,19 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -696,7 +812,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">4 分钟</span>
+    <span title="站点阅读时长">5 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
   </div>
