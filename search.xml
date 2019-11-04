@@ -15,7 +15,7 @@
   <entry>
     <title>test</title>
     <url>/2019/11/04/test/</url>
-    <content><![CDATA[<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p><img src="/.com//微信图片_20191104092712.jpg" alt="微信图片_20191104092712"></p>
+    <content><![CDATA[<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p><img src="../images/微信图片_20191104092712.jpg" alt="微信图片_20191104092712"></p>
 ]]></content>
       <categories>
         <category>分类1</category>
