@@ -3,23 +3,11 @@
   <entry>
     <title>图片测试</title>
     <url>/2019/11/04/%E5%9B%BE%E7%89%87%E6%B5%8B%E8%AF%95/</url>
-    <content><![CDATA[<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p><img src="/2019/11/04/%E5%9B%BE%E7%89%87%E6%B5%8B%E8%AF%95/微信图片_20191104092712.jpg" alt="微信图片_20191104092712"></p>
-]]></content>
-      <categories>
-        <category>USB</category>
-      </categories>
-      <tags>
-        <tag>USB</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>test</title>
-    <url>/2019/11/04/test/</url>
-    <content><![CDATA[<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p><img src="/2019/11/04/test/images/微信图片_20191104092712.jpg" alt="微信图片_20191104092712"></p>
+    <content><![CDATA[<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p><img src="/2019/11/04/%E5%9B%BE%E7%89%87%E6%B5%8B%E8%AF%95/微信图片_20191104092712.jpg" alt="微信图片_20191104092712"></p>
 ]]></content>
       <categories>
         <category>分类1</category>
-        <category>分类2测试</category>
+        <category>分类2</category>
       </categories>
       <tags>
         <tag>标签1</tag>
