@@ -52,31 +52,36 @@
   };
 </script>
 
-  <meta name="description" content="涉猎的主要编程语言为C，领域为BLE、RTOS和IOT等。">
-<meta name="keywords" content="C, 数据结构, 算法, NRF52832, STM32, uC&#x2F;OS-II">
-<meta property="og:type" content="website">
-<meta property="og:title" content="理性乐观π">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;index.html">
+  <meta name="description" content="ONENET读取与控制麒麟座MINI开发板LED状态硬件麒麟座MINI开发板V1.4 嵌入式软件OneNET_Demo_ESP8266_EDP_Led 工程修改内容 led.c文件修改 函数LED_Init，mini开发板LED所在GPIO为PB6、PB7、PB8、PB9 函数LED_GetValue，mini开发板LED状态与IO口状态相反    123456789101112131415161">
+<meta name="keywords" content="Onenet,Esp8266">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ONENET读取与控制麒麟座MINI开发板LED状态">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;04&#x2F;ONENET%E8%AF%BB%E5%8F%96%E4%B8%8E%E6%8E%A7%E5%88%B6%E9%BA%92%E9%BA%9F%E5%BA%A7MINI%E5%BC%80%E5%8F%91%E6%9D%BFLED%E7%8A%B6%E6%80%81&#x2F;index.html">
 <meta property="og:site_name" content="理性乐观π">
-<meta property="og:description" content="涉猎的主要编程语言为C，领域为BLE、RTOS和IOT等。">
+<meta property="og:description" content="ONENET读取与控制麒麟座MINI开发板LED状态硬件麒麟座MINI开发板V1.4 嵌入式软件OneNET_Demo_ESP8266_EDP_Led 工程修改内容 led.c文件修改 函数LED_Init，mini开发板LED所在GPIO为PB6、PB7、PB8、PB9 函数LED_GetValue，mini开发板LED状态与IO口状态相反    123456789101112131415161">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;04&#x2F;ONENET%E8%AF%BB%E5%8F%96%E4%B8%8E%E6%8E%A7%E5%88%B6%E9%BA%92%E9%BA%9F%E5%BA%A7MINI%E5%BC%80%E5%8F%91%E6%9D%BFLED%E7%8A%B6%E6%80%81&#x2F;1534058781353.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;04&#x2F;ONENET%E8%AF%BB%E5%8F%96%E4%B8%8E%E6%8E%A7%E5%88%B6%E9%BA%92%E9%BA%9F%E5%BA%A7MINI%E5%BC%80%E5%8F%91%E6%9D%BFLED%E7%8A%B6%E6%80%81&#x2F;1534058972096.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;04&#x2F;ONENET%E8%AF%BB%E5%8F%96%E4%B8%8E%E6%8E%A7%E5%88%B6%E9%BA%92%E9%BA%9F%E5%BA%A7MINI%E5%BC%80%E5%8F%91%E6%9D%BFLED%E7%8A%B6%E6%80%81&#x2F;1534058869807.png">
+<meta property="og:updated_time" content="2019-11-04T08:36:11.131Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;04&#x2F;ONENET%E8%AF%BB%E5%8F%96%E4%B8%8E%E6%8E%A7%E5%88%B6%E9%BA%92%E9%BA%9F%E5%BA%A7MINI%E5%BC%80%E5%8F%91%E6%9D%BFLED%E7%8A%B6%E6%80%81&#x2F;1534058781353.png">
 
-<link rel="canonical" href="http://yoursite.com/">
+<link rel="canonical" href="http://yoursite.com/2019/11/04/ONENET%E8%AF%BB%E5%8F%96%E4%B8%8E%E6%8E%A7%E5%88%B6%E9%BA%92%E9%BA%9F%E5%BA%A7MINI%E5%BC%80%E5%8F%91%E6%9D%BFLED%E7%8A%B6%E6%80%81/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: true,
-    isPost: false,
+    isHome: false,
+    isPost: true,
     isPage: false,
     isArchive: false
   };
 </script>
 
-  <title>理性乐观π</title>
+  <title>ONENET读取与控制麒麟座MINI开发板LED状态 | 理性乐观π</title>
   
 
 
@@ -205,10 +210,10 @@
             
 
   <div class="posts-expand">
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/04/ONENET%E8%AF%BB%E5%8F%96%E4%B8%8E%E6%8E%A7%E5%88%B6%E9%BA%92%E9%BA%9F%E5%BA%A7MINI%E5%BC%80%E5%8F%91%E6%9D%BFLED%E7%8A%B6%E6%80%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -222,8 +227,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/04/ONENET%E8%AF%BB%E5%8F%96%E4%B8%8E%E6%8E%A7%E5%88%B6%E9%BA%92%E9%BA%9F%E5%BA%A7MINI%E5%BC%80%E5%8F%91%E6%9D%BFLED%E7%8A%B6%E6%80%81/" class="post-title-link" itemprop="url">ONENET读取与控制麒麟座MINI开发板LED状态</a>
+          ONENET读取与控制麒麟座MINI开发板LED状态
         </h1>
 
         <div class="post-meta">
@@ -273,7 +277,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="ONENET读取与控制麒麟座MINI开发板LED状态"><a href="#ONENET读取与控制麒麟座MINI开发板LED状态" class="headerlink" title="ONENET读取与控制麒麟座MINI开发板LED状态"></a>ONENET读取与控制麒麟座MINI开发板LED状态</h2><h3 id="硬件"><a href="#硬件" class="headerlink" title="硬件"></a>硬件</h3><p>麒麟座MINI开发板V1.4</p>
+        <h2 id="ONENET读取与控制麒麟座MINI开发板LED状态"><a href="#ONENET读取与控制麒麟座MINI开发板LED状态" class="headerlink" title="ONENET读取与控制麒麟座MINI开发板LED状态"></a>ONENET读取与控制麒麟座MINI开发板LED状态</h2><h3 id="硬件"><a href="#硬件" class="headerlink" title="硬件"></a>硬件</h3><p>麒麟座MINI开发板V1.4</p>
 <h3 id="嵌入式软件"><a href="#嵌入式软件" class="headerlink" title="嵌入式软件"></a>嵌入式软件</h3><p>OneNET_Demo_ESP8266_EDP_Led</p>
 <h3 id="工程修改内容"><a href="#工程修改内容" class="headerlink" title="工程修改内容"></a>工程修改内容</h3><ol>
 <li>led.c文件修改<ul>
@@ -310,295 +314,40 @@
 </li>
 </ol>
 
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+          <div class="post-tags">
+              <a href="/tags/Onenet/" rel="tag"># Onenet</a>
+              <a href="/tags/Esp8266/" rel="tag"># Esp8266</a>
+          </div>
 
         
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/04/usb-msc%E6%9E%9A%E4%B8%BE%E8%BF%87%E7%A8%8B/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="tony2ty">
-      <meta itemprop="description" content="涉猎的主要编程语言为C，领域为BLE、RTOS和IOT等。">
-    </span>
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/11/04/usb-msc%E6%9E%9A%E4%B8%BE%E8%BF%87%E7%A8%8B/" rel="next" title="usb_msc枚举过程">
+                  <i class="fa fa-chevron-left"></i> usb_msc枚举过程
+                </a>
+            </div>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="理性乐观π">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/04/usb-msc%E6%9E%9A%E4%B8%BE%E8%BF%87%E7%A8%8B/" class="post-title-link" itemprop="url">usb_msc枚举过程</a>
-        </h1>
+            <span class="post-nav-divider"></span>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2019-11-04 11:14:57 / 修改时间：11:18:17" itemprop="dateCreated datePublished" datetime="2019-11-04T11:14:57+08:00">2019-11-04</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/USB/" itemprop="url" rel="index">
-                    <span itemprop="name">USB</span>
-                  </a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>154</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="usb-msc-枚举过程"><a href="#usb-msc-枚举过程" class="headerlink" title="usb msc 枚举过程"></a>usb msc 枚举过程</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><ol>
-<li>枚举是控制传输的过程</li>
-</ol>
-<h3 id="抓包过程"><a href="#抓包过程" class="headerlink" title="抓包过程"></a>抓包过程</h3><h4 id="获取设备描述符"><a href="#获取设备描述符" class="headerlink" title="获取设备描述符"></a>获取设备描述符</h4><h5 id="令牌包"><a href="#令牌包" class="headerlink" title="令牌包"></a>令牌包</h5><p><img src="/2019/11/04/usb-msc%E6%9E%9A%E4%B8%BE%E8%BF%87%E7%A8%8B/1533175261964.png" alt="1533175261964"></p>
-<h5 id="数据包"><a href="#数据包" class="headerlink" title="数据包"></a>数据包</h5><p><img src="/2019/11/04/usb-msc%E6%9E%9A%E4%B8%BE%E8%BF%87%E7%A8%8B/1533175409748.png" alt="1533175409748"></p>
-<h5 id="握手包"><a href="#握手包" class="headerlink" title="握手包"></a>握手包</h5><p><img src="/2019/11/04/usb-msc%E6%9E%9A%E4%B8%BE%E8%BF%87%E7%A8%8B/1533178992930.png" alt="1533178992930"></p>
-<h4 id="获取配置描述符"><a href="#获取配置描述符" class="headerlink" title="获取配置描述符"></a>获取配置描述符</h4><h5 id="令牌包-1"><a href="#令牌包-1" class="headerlink" title="令牌包"></a>令牌包</h5><p><img src="/2019/11/04/usb-msc%E6%9E%9A%E4%B8%BE%E8%BF%87%E7%A8%8B/1533178949998.png" alt="1533178949998"></p>
-<h5 id="数据包-1"><a href="#数据包-1" class="headerlink" title="数据包"></a>数据包</h5><p><img src="/2019/11/04/usb-msc%E6%9E%9A%E4%B8%BE%E8%BF%87%E7%A8%8B/1533179154801.png" alt="1533179154801"></p>
-<h5 id="握手包-1"><a href="#握手包-1" class="headerlink" title="握手包"></a>握手包</h5><p><img src="/2019/11/04/usb-msc%E6%9E%9A%E4%B8%BE%E8%BF%87%E7%A8%8B/1533178992930.png" alt="1533178992930"></p>
-<h4 id="获取配置接口端点描述符"><a href="#获取配置接口端点描述符" class="headerlink" title="获取配置接口端点描述符"></a>获取配置接口端点描述符</h4><h5 id="令牌包-2"><a href="#令牌包-2" class="headerlink" title="令牌包"></a>令牌包</h5><p><img src="/2019/11/04/usb-msc%E6%9E%9A%E4%B8%BE%E8%BF%87%E7%A8%8B/1533179258513.png" alt="1533179258513"></p>
-<h5 id="数据包-2"><a href="#数据包-2" class="headerlink" title="数据包"></a>数据包</h5><p><img src="/2019/11/04/usb-msc%E6%9E%9A%E4%B8%BE%E8%BF%87%E7%A8%8B/1533179574643.png" alt="1533179574643"></p>
-<h5 id="握手包-2"><a href="#握手包-2" class="headerlink" title="握手包"></a>握手包</h5><p><img src="/2019/11/04/usb-msc%E6%9E%9A%E4%B8%BE%E8%BF%87%E7%A8%8B/1533179613251.png" alt="1533179613251"></p>
-<p>问题</p>
-<ol>
-<li>当前来看枚举过程起始的SETUP令牌包阶段，应该是IN令牌包，根据IN令牌包的要求，需要包含设备地址和端点号，目前来看并未包含？</li>
-</ol>
-<p>如何识别各种包的类型</p>
-<p><img src="/2019/11/04/usb-msc%E6%9E%9A%E4%B8%BE%E8%BF%87%E7%A8%8B/1533178248321.png" alt="1533178248321"></p>
-<p><img src="/2019/11/04/usb-msc%E6%9E%9A%E4%B8%BE%E8%BF%87%E7%A8%8B/1533178365995.png" alt="1533178365995"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
       </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/04/hello/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="tony2ty">
-      <meta itemprop="description" content="涉猎的主要编程语言为C，领域为BLE、RTOS和IOT等。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="理性乐观π">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/04/hello/" class="post-title-link" itemprop="url">hello_world</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2019-11-04 09:59:43 / 修改时间：10:01:51" itemprop="dateCreated datePublished" datetime="2019-11-04T09:59:43+08:00">2019-11-04</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%88%86%E7%B1%BB1/" itemprop="url" rel="index">
-                    <span itemprop="name">分类1</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%88%86%E7%B1%BB1/%E5%88%86%E7%B1%BB2/" itemprop="url" rel="index">
-                    <span itemprop="name">分类2</span>
-                  </a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/03/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="tony2ty">
-      <meta itemprop="description" content="涉猎的主要编程语言为C，领域为BLE、RTOS和IOT等。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="理性乐观π">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/03/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-11-03 21:21:45" itemprop="dateCreated datePublished" datetime="2019-11-03T21:21:45+08:00">2019-11-03</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>357</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
   </article>
   
   
   
 
   </div>
-
-  
-
 
 
           </div>
@@ -627,6 +376,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ONENET读取与控制麒麟座MINI开发板LED状态"><span class="nav-number">1.</span> <span class="nav-text">ONENET读取与控制麒麟座MINI开发板LED状态</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#硬件"><span class="nav-number">1.1.</span> <span class="nav-text">硬件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#嵌入式软件"><span class="nav-number">1.2.</span> <span class="nav-text">嵌入式软件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工程修改内容"><span class="nav-number">1.3.</span> <span class="nav-text">工程修改内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OneNET平台操作"><span class="nav-number">1.4.</span> <span class="nav-text">OneNET平台操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">1.5.</span> <span class="nav-text">参考</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

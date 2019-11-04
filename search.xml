@@ -1,6 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>ONENET读取与控制麒麟座MINI开发板LED状态</title>
+    <url>/2019/11/04/ONENET%E8%AF%BB%E5%8F%96%E4%B8%8E%E6%8E%A7%E5%88%B6%E9%BA%92%E9%BA%9F%E5%BA%A7MINI%E5%BC%80%E5%8F%91%E6%9D%BFLED%E7%8A%B6%E6%80%81/</url>
+    <content><![CDATA[<h2 id="ONENET读取与控制麒麟座MINI开发板LED状态"><a href="#ONENET读取与控制麒麟座MINI开发板LED状态" class="headerlink" title="ONENET读取与控制麒麟座MINI开发板LED状态"></a>ONENET读取与控制麒麟座MINI开发板LED状态</h2><h3 id="硬件"><a href="#硬件" class="headerlink" title="硬件"></a>硬件</h3><p>麒麟座MINI开发板V1.4</p>
+<h3 id="嵌入式软件"><a href="#嵌入式软件" class="headerlink" title="嵌入式软件"></a>嵌入式软件</h3><p>OneNET_Demo_ESP8266_EDP_Led</p>
+<h3 id="工程修改内容"><a href="#工程修改内容" class="headerlink" title="工程修改内容"></a>工程修改内容</h3><ol>
+<li>led.c文件修改<ul>
+<li>函数LED_Init，mini开发板LED所在GPIO为PB6、PB7、PB8、PB9</li>
+<li>函数LED_GetValue，mini开发板LED状态与IO口状态相反</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  * @brief  LED指示灯初始化函数</span></span><br><span class="line"><span class="comment">**/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">LED_Init</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    GPIO_InitTypeDef GPIO_InitStructure;</span><br><span class="line">    <span class="comment">//PB9--对应开发板红色指示灯;PB8--对应开发板绿色指示灯;</span></span><br><span class="line">	<span class="comment">//PB7--对应开发板黄色指示灯;PB6---对应开发板蓝色指示灯</span></span><br><span class="line">    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);</span><br><span class="line">    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6|GPIO_Pin_7|GPIO_Pin_8|GPIO_Pin_9;</span><br><span class="line">    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;</span><br><span class="line">    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;</span><br><span class="line">    GPIO_Init(GPIOB, &amp;GPIO_InitStructure);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  * @brief  获取LED的当前状态值</span></span><br><span class="line"><span class="comment">**/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">LED_GetValue</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(GPIO_ReadOutputDataBit(GPIOB, GPIO_Pin_9))</span><br><span class="line">		&#123;</span><br><span class="line">				red_value=<span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">				red_value=<span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(GPIO_ReadOutputDataBit(GPIOB, GPIO_Pin_6))</span><br><span class="line">		&#123;</span><br><span class="line">				blue_value=<span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">				blue_value=<span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(GPIO_ReadOutputDataBit(GPIOB, GPIO_Pin_8))</span><br><span class="line">		&#123;</span><br><span class="line">				green_value=<span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">				green_value=<span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(GPIO_ReadOutputDataBit(GPIOB, GPIO_Pin_7))								</span><br><span class="line">		&#123;</span><br><span class="line">				yellow_value=<span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">				yellow_value=<span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>led.h文件修改</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span>  LED_RED_OFF       GPIO_SetBits(GPIOB,GPIO_Pin_9)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span>  LED_GREEN_OFF     GPIO_SetBits(GPIOB,GPIO_Pin_8)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span>  LED_YELLOW_OFF    GPIO_SetBits(GPIOB,GPIO_Pin_7)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span>  LED_BLUE_OFF      GPIO_SetBits(GPIOB,GPIO_Pin_6)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span>  LED_RED_ON        GPIO_ResetBits(GPIOB,GPIO_Pin_9)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span>  LED_GREEN_ON      GPIO_ResetBits(GPIOB,GPIO_Pin_8)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span>  LED_YELLOW_ON     GPIO_ResetBits(GPIOB,GPIO_Pin_7)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span>  LED_BLUE_ON       GPIO_ResetBits(GPIOB,GPIO_Pin_6)</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>ESP8266.h文件修改</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> API_KEY     <span class="meta-string">"DXZcCKxqrpxZJKWFnbMzxIjeITk="</span>  <span class="comment">//API_KEY 需要修改为用户自己的对应参数</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DEV_ID      <span class="meta-string">"1078702"</span>                       <span class="comment">//设备ID  需要修改为用户自己的对应参数</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CWJAP       <span class="meta-string">"AT+CWJAP=\"ONENET\",\"\"\r\n"</span>	<span class="comment">//ssid: onenet 密码：空</span></span></span><br></pre></td></tr></table></figure>
+<pre><code>前两个宏定义OneNET平台相关，最后一个WIFI的SSID名称以及密码，这三个宏根据自己的需要修改
+</code></pre><h3 id="OneNET平台操作"><a href="#OneNET平台操作" class="headerlink" title="OneNET平台操作"></a>OneNET平台操作</h3><ol>
+<li>设置GPIO状态</li>
+</ol>
+<p><img src="/2019/11/04/ONENET%E8%AF%BB%E5%8F%96%E4%B8%8E%E6%8E%A7%E5%88%B6%E9%BA%92%E9%BA%9F%E5%BA%A7MINI%E5%BC%80%E5%8F%91%E6%9D%BFLED%E7%8A%B6%E6%80%81/1534058781353.png" alt="1534058781353"></p>
+<p><img src="/2019/11/04/ONENET%E8%AF%BB%E5%8F%96%E4%B8%8E%E6%8E%A7%E5%88%B6%E9%BA%92%E9%BA%9F%E5%BA%A7MINI%E5%BC%80%E5%8F%91%E6%9D%BFLED%E7%8A%B6%E6%80%81/1534058972096.png" alt="1534058972096"></p>
+<p>上述命令实现点亮blue led</p>
+<ol>
+<li>读取GPIO状态</li>
+</ol>
+<p><img src="/2019/11/04/ONENET%E8%AF%BB%E5%8F%96%E4%B8%8E%E6%8E%A7%E5%88%B6%E9%BA%92%E9%BA%9F%E5%BA%A7MINI%E5%BC%80%E5%8F%91%E6%9D%BFLED%E7%8A%B6%E6%80%81/1534058869807.png" alt="1534058869807"></p>
+<p> 目前显示BLUE点亮，其他三个LED熄灭</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ol>
+<li><a href="https://github.com/cm-heclouds/OneNET_demo_code_kylin/tree/master/OneNET_Demo_ESP8266_EDP_Led" target="_blank" rel="noopener">https://github.com/cm-heclouds/OneNET_demo_code_kylin/tree/master/OneNET_Demo_ESP8266_EDP_Led</a><ol>
+<li><a href="https://github.com/cm-heclouds/OneNET_demo_code_kylin/blob/master/OneNET_Demo_User_Guide.pdf" target="_blank" rel="noopener">https://github.com/cm-heclouds/OneNET_demo_code_kylin/blob/master/OneNET_Demo_User_Guide.pdf</a></li>
+</ol>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Onenet</category>
+      </categories>
+      <tags>
+        <tag>Onenet</tag>
+        <tag>Esp8266</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>usb_msc枚举过程</title>
     <url>/2019/11/04/usb-msc%E6%9E%9A%E4%B8%BE%E8%BF%87%E7%A8%8B/</url>
     <content><![CDATA[<h2 id="usb-msc-枚举过程"><a href="#usb-msc-枚举过程" class="headerlink" title="usb msc 枚举过程"></a>usb msc 枚举过程</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><ol>
