@@ -52,18 +52,23 @@
   };
 </script>
 
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
-<meta name="keywords" content="C, 数据结构, 算法, NRF52832, STM32, uC&#x2F;OS-II">
+  <meta name="description" content="BC20 MQTT连接OneNet平台使用串口调试助手AT命令方式驱动BC20模块 OneNet平台创建相关产品以及设备产品 设备 BC20设置 发送的命令      序号 命令 说明     1 AT+QMTCFG=”version”,0,4 配置MQTT选项参数   2 AT+QMTOPEN=0,”183.230.40.39”,6002 打开MQTT客户端   3 AT+QMTCONN=0,”">
+<meta name="keywords" content="OneNet,MQTT">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;03&#x2F;hello-world&#x2F;index.html">
+<meta property="og:title" content="BC20 MQTT连接OneNet">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;20&#x2F;BC20-MQTT%E8%BF%9E%E6%8E%A5OneNet&#x2F;index.html">
 <meta property="og:site_name" content="理性乐观π">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="BC20 MQTT连接OneNet平台使用串口调试助手AT命令方式驱动BC20模块 OneNet平台创建相关产品以及设备产品 设备 BC20设置 发送的命令      序号 命令 说明     1 AT+QMTCFG=”version”,0,4 配置MQTT选项参数   2 AT+QMTOPEN=0,”183.230.40.39”,6002 打开MQTT客户端   3 AT+QMTCONN=0,”">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-03T13:21:45.193Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;20&#x2F;BC20-MQTT%E8%BF%9E%E6%8E%A5OneNet&#x2F;ScreenClip.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;20&#x2F;BC20-MQTT%E8%BF%9E%E6%8E%A5OneNet&#x2F;ScreenClip%20[2].png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;20&#x2F;BC20-MQTT%E8%BF%9E%E6%8E%A5OneNet&#x2F;ScreenClip%20[3].png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;20&#x2F;BC20-MQTT%E8%BF%9E%E6%8E%A5OneNet&#x2F;ScreenClip%20[4].jpg">
+<meta property="og:updated_time" content="2019-11-20T09:22:07.539Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;20&#x2F;BC20-MQTT%E8%BF%9E%E6%8E%A5OneNet&#x2F;ScreenClip.png">
 
-<link rel="canonical" href="http://yoursite.com/2019/11/03/hello-world/">
+<link rel="canonical" href="http://yoursite.com/2019/11/20/BC20-MQTT%E8%BF%9E%E6%8E%A5OneNet/">
 
 
 <script id="page-configurations">
@@ -77,7 +82,7 @@
   };
 </script>
 
-  <title>Hello World | 理性乐观π</title>
+  <title>BC20 MQTT连接OneNet | 理性乐观π</title>
   
 
 
@@ -210,7 +215,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/03/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/20/BC20-MQTT%E8%BF%9E%E6%8E%A5OneNet/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -223,7 +228,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Hello World
+          BC20 MQTT连接OneNet
         </h1>
 
         <div class="post-meta">
@@ -232,8 +237,20 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2019-11-03 21:21:45" itemprop="dateCreated datePublished" datetime="2019-11-03T21:21:45+08:00">2019-11-03</time>
+              <time title="创建时间：2019-11-20 17:17:38 / 修改时间：17:22:07" itemprop="dateCreated datePublished" datetime="2019-11-20T17:17:38+08:00">2019-11-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/" itemprop="url" rel="index">
+                    <span itemprop="name">嵌入式</span>
+                  </a>
+                </span>
             </span>
 
           <br>
@@ -242,7 +259,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>357</span>
+              <span>350</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -261,15 +278,63 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <h2 id="BC20-MQTT连接OneNet"><a href="#BC20-MQTT连接OneNet" class="headerlink" title="BC20 MQTT连接OneNet"></a>BC20 MQTT连接OneNet</h2><h3 id="平台"><a href="#平台" class="headerlink" title="平台"></a>平台</h3><p>使用串口调试助手AT命令方式驱动BC20模块</p>
+<h3 id="OneNet平台创建相关产品以及设备"><a href="#OneNet平台创建相关产品以及设备" class="headerlink" title="OneNet平台创建相关产品以及设备"></a>OneNet平台创建相关产品以及设备</h3><h4 id="产品"><a href="#产品" class="headerlink" title="产品"></a>产品</h4><p><img src="/2019/11/20/BC20-MQTT%E8%BF%9E%E6%8E%A5OneNet/ScreenClip.png" alt="ScreenClip"></p>
+<h4 id="设备"><a href="#设备" class="headerlink" title="设备"></a>设备</h4><p><img src="/2019/11/20/BC20-MQTT%E8%BF%9E%E6%8E%A5OneNet/ScreenClip [2].png" alt="ScreenClip [2]"></p>
+<h4 id="BC20设置"><a href="#BC20设置" class="headerlink" title="BC20设置"></a>BC20设置</h4><ol>
+<li>发送的命令</li>
+</ol>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>AT+QMTCFG=”version”,0,4</td>
+<td>配置MQTT选项参数</td>
+</tr>
+<tr>
+<td>2</td>
+<td>AT+QMTOPEN=0,”183.230.40.39”,6002</td>
+<td>打开MQTT客户端</td>
+</tr>
+<tr>
+<td>3</td>
+<td>AT+QMTCONN=0,”571192984”,”296559”,”pub20191120”</td>
+<td>客户端连接服务器</td>
+</tr>
+<tr>
+<td>4</td>
+<td>AT+QMTCLOSE=0</td>
+<td>关闭MQTT客户端</td>
+</tr>
+<tr>
+<td>5</td>
+<td>AT+QMTDISC=0</td>
+<td>客户端断开与服务器的连接</td>
+</tr>
+<tr>
+<td>6</td>
+<td>AT+QMTSUB=0,1,”dev0”,0</td>
+<td>主题订阅</td>
+</tr>
+<tr>
+<td>7</td>
+<td>AT+QMTPUB=0,0,0,0,”dev0”,”hello MQTT.”</td>
+<td>主题发布</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="平台下发数据"><a href="#平台下发数据" class="headerlink" title="平台下发数据"></a>平台下发数据</h4><p><img src="/2019/11/20/BC20-MQTT%E8%BF%9E%E6%8E%A5OneNet/ScreenClip [3].png" alt="ScreenClip [3]"></p>
+<h4 id="终端接收数据"><a href="#终端接收数据" class="headerlink" title="终端接收数据"></a>终端接收数据</h4><p><img src="/2019/11/20/BC20-MQTT%E8%BF%9E%E6%8E%A5OneNet/ScreenClip [4].jpg" alt="ScreenClip [4]"></p>
+<h4 id="平台发布订阅"><a href="#平台发布订阅" class="headerlink" title="平台发布订阅"></a>平台发布订阅</h4><p>待实现</p>
 
     </div>
 
@@ -278,19 +343,23 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/OneNet/" rel="tag"># OneNet</a>
+              <a href="/tags/MQTT/" rel="tag"># MQTT</a>
+          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
+                <a href="/2019/11/09/bin%E4%B8%8Ehex%E6%96%87%E4%BB%B6%E7%9A%84%E5%8C%BA%E5%88%AB/" rel="next" title="bin与hex文件的区别">
+                  <i class="fa fa-chevron-left"></i> bin与hex文件的区别
+                </a>
             </div>
 
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/2019/11/04/hello/" rel="prev" title="hello_world">
-                  hello_world <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
       </footer>
@@ -329,7 +398,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#BC20-MQTT连接OneNet"><span class="nav-number">1.</span> <span class="nav-text">BC20 MQTT连接OneNet</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#平台"><span class="nav-number">1.1.</span> <span class="nav-text">平台</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OneNet平台创建相关产品以及设备"><span class="nav-number">1.2.</span> <span class="nav-text">OneNet平台创建相关产品以及设备</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#产品"><span class="nav-number">1.2.1.</span> <span class="nav-text">产品</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设备"><span class="nav-number">1.2.2.</span> <span class="nav-text">设备</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BC20设置"><span class="nav-number">1.2.3.</span> <span class="nav-text">BC20设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#平台下发数据"><span class="nav-number">1.2.4.</span> <span class="nav-text">平台下发数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#终端接收数据"><span class="nav-number">1.2.5.</span> <span class="nav-text">终端接收数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#平台发布订阅"><span class="nav-number">1.2.6.</span> <span class="nav-text">平台发布订阅</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

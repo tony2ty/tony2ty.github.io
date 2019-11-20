@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-11-04T14:09:36.443Z</updated>
+  <updated>2019-11-20T09:22:07.539Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,62 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>BC20 MQTT连接OneNet</title>
+    <link href="http://yoursite.com/2019/11/20/BC20-MQTT%E8%BF%9E%E6%8E%A5OneNet/"/>
+    <id>http://yoursite.com/2019/11/20/BC20-MQTT连接OneNet/</id>
+    <published>2019-11-20T09:17:38.000Z</published>
+    <updated>2019-11-20T09:22:07.539Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="BC20-MQTT连接OneNet"><a href="#BC20-MQTT连接OneNet" class="headerlink" title="BC20 MQTT连接OneNet"></a>BC20 MQTT连接OneNet</h2><h3 id="平台"><a href="#平台" class="headerlink" title="平台"></a>平台</h3><p>使用串口调试助手AT命令方式驱动BC20模块</p><h3 id="OneNet平台创建相关产品以及设备"><a href="#OneNet平台创建相关产品以及设备" class="headerlink" title="OneNet平台创建相关产品以及设备"></a>OneNet平台创建相关产品以及设备</h3><h4 id="产品"><a href="#产品" class="headerlink" title="产品"></a>产品</h4><p><img src="/2019/11/20/BC20-MQTT%E8%BF%9E%E6%8E%A5OneNet/ScreenClip.png" alt="ScreenClip"></p><h4 id="设备"><a href="#设备" class="headerlink" title="设备"></a>设备</h4><p><img src="/2019/11/20/BC20-MQTT%E8%BF%9E%E6%8E%A5OneNet/ScreenClip [2].png" alt="ScreenClip [2]"></p><h4 id="BC20设置"><a href="#BC20设置" class="headerlink" title="BC20设置"></a>BC20设置</h4><ol><li>发送的命令</li></ol><div class="table-container"><table><thead><tr><th>序号</th><th>命令</th><th>说明</th></tr></thead><tbody><tr><td>1</td><td>AT+QMTCFG=”version”,0,4</td><td>配置MQTT选项参数</td></tr><tr><td>2</td><td>AT+QMTOPEN=0,”183.230.40.39”,6002</td><td>打开MQTT客户端</td></tr><tr><td>3</td><td>AT+QMTCONN=0,”571192984”,”296559”,”pub20191120”</td><td>客户端连接服务器</td></tr><tr><td>4</td><td>AT+QMTCLOSE=0</td><td>关闭MQTT客户端</td></tr><tr><td>5</td><td>AT+QMTDISC=0</td><td>客户端断开与服务器的连接</td></tr><tr><td>6</td><td>AT+QMTSUB=0,1,”dev0”,0</td><td>主题订阅</td></tr><tr><td>7</td><td>AT+QMTPUB=0,0,0,0,”dev0”,”hello MQTT.”</td><td>主题发布</td></tr></tbody></table></div><h4 id="平台下发数据"><a href="#平台下发数据" class="headerlink" title="平台下发数据"></a>平台下发数据</h4><p><img src="/2019/11/20/BC20-MQTT%E8%BF%9E%E6%8E%A5OneNet/ScreenClip [3].png" alt="ScreenClip [3]"></p><h4 id="终端接收数据"><a href="#终端接收数据" class="headerlink" title="终端接收数据"></a>终端接收数据</h4><p><img src="/2019/11/20/BC20-MQTT%E8%BF%9E%E6%8E%A5OneNet/ScreenClip [4].jpg" alt="ScreenClip [4]"></p><h4 id="平台发布订阅"><a href="#平台发布订阅" class="headerlink" title="平台发布订阅"></a>平台发布订阅</h4><p>待实现</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;BC20-MQTT连接OneNet&quot;&gt;&lt;a href=&quot;#BC20-MQTT连接OneNet&quot; class=&quot;headerlink&quot; title=&quot;BC20 MQTT连接OneNet&quot;&gt;&lt;/a&gt;BC20 MQTT连接OneNet&lt;/h2&gt;&lt;h3 id=&quot;平台&quot;&gt;&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="嵌入式" scheme="http://yoursite.com/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+    
+      <category term="OneNet" scheme="http://yoursite.com/tags/OneNet/"/>
+    
+      <category term="MQTT" scheme="http://yoursite.com/tags/MQTT/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>bin与hex文件的区别</title>
+    <link href="http://yoursite.com/2019/11/09/bin%E4%B8%8Ehex%E6%96%87%E4%BB%B6%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
+    <id>http://yoursite.com/2019/11/09/bin与hex文件的区别/</id>
+    <published>2019-11-09T01:25:59.000Z</published>
+    <updated>2019-11-09T02:29:28.271Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="bin与hex文件的区别"><a href="#bin与hex文件的区别" class="headerlink" title="bin与hex文件的区别"></a>bin与hex文件的区别</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>嵌入式系统中，在终端设备中运行的程序常用的两种格式：<code>bin</code>与<code>hex</code>格式。一般<code>IDE</code>（<code>KEIL</code>、<code>IAR</code>）都可以生成这两种格式。</p><p>个人之前一般使用<code>bin</code>格式。<code>bin</code>文件格式比较麻烦的一个问题就是需要知道程序下载的位置，即需要人为指定下载地址才可以。</p><p>在之前的开发过程中一直没有关注过，为啥非要搞出两种格式？直到上次使用<code>J-FLASH</code> 下载<code>hex</code>文件格式的文件时，发现居然不需要指定地址空间才发现原来<code>hex</code>有这个好处。于是研究了一下这两种格式的区别。</p><h3 id="hex格式介绍"><a href="#hex格式介绍" class="headerlink" title="hex格式介绍"></a>hex格式介绍</h3><p>hex文件格式是由intel提出的一种ASCII文本文件，hex文件每行包含一个hex记录。intel HEX文件中的每一行都包含一个HEX记录。这些记录由代表机器的十六进制数字组成语言代码和/或常量数据。英特尔HEX文件通常用于传输将存储在ROM或EPROM中的程序和数据。</p><p>一个intel hex 文件由许多hex记录组成，</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;bin与hex文件的区别&quot;&gt;&lt;a href=&quot;#bin与hex文件的区别&quot; class=&quot;headerlink&quot; title=&quot;bin与hex文件的区别&quot;&gt;&lt;/a&gt;bin与hex文件的区别&lt;/h2&gt;&lt;h3 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;
+      
+    
+    </summary>
+    
+    
+      <category term="嵌入式" scheme="http://yoursite.com/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+    
+      <category term="bin" scheme="http://yoursite.com/tags/bin/"/>
+    
+      <category term="hex" scheme="http://yoursite.com/tags/hex/"/>
+    
+  </entry>
   
   <entry>
     <title>ble空中包格式</title>
