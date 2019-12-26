@@ -209,6 +209,98 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/26/nrf52832%E5%B9%BF%E6%92%AD%E6%97%B6%E5%8A%A0%E5%85%A5%E8%87%AA%E5%AE%9A%E4%B9%89UUID/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="tony2ty">
+      <meta itemprop="description" content="涉猎的主要编程语言为C，领域为BLE、RTOS和IOT等。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="理性乐观π">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/26/nrf52832%E5%B9%BF%E6%92%AD%E6%97%B6%E5%8A%A0%E5%85%A5%E8%87%AA%E5%AE%9A%E4%B9%89UUID/" class="post-title-link" itemprop="url">nrf52832广播时加入自定义UUID</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-12-26 16:49:14 / 修改时间：16:53:01" itemprop="dateCreated datePublished" datetime="2019-12-26T16:49:14+08:00">2019-12-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/BLE/" itemprop="url" rel="index">
+                    <span itemprop="name">BLE</span>
+                  </a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>119</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="nrf52832广播时加入自定义UUID"><a href="#nrf52832广播时加入自定义UUID" class="headerlink" title="nrf52832广播时加入自定义UUID"></a>nrf52832广播时加入自定义UUID</h2><p>广播中包含自定义服务<code>UUID</code>与包含标准服务<code>UUID</code>是有所区别的，区别是数据长度不一致</p>
+<ul>
+<li>标准服务<code>UUID</code>，长度为2个字节</li>
+<li>自定义服务<code>UUID</code>，长度为16个字节 </li>
+</ul>
+<p><img src="/2019/12/26/nrf52832%E5%B9%BF%E6%92%AD%E6%97%B6%E5%8A%A0%E5%85%A5%E8%87%AA%E5%AE%9A%E4%B9%89UUID/image-20191025161248136.png" alt="image-20191025161248136"></p>
+<p><img src="/2019/12/26/nrf52832%E5%B9%BF%E6%92%AD%E6%97%B6%E5%8A%A0%E5%85%A5%E8%87%AA%E5%AE%9A%E4%B9%89UUID/Image.png" alt="Image"></p>
+<p>在<code>SCAN_RSP</code>扫描响应中加入自定义<code>UUID</code></p>
+<p><img src="/2019/12/26/nrf52832%E5%B9%BF%E6%92%AD%E6%97%B6%E5%8A%A0%E5%85%A5%E8%87%AA%E5%AE%9A%E4%B9%89UUID/image-20191025155930524.png" alt="image-20191025155930524"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/25/7-%E6%95%B4%E6%95%B0%E5%8F%8D%E8%BD%AC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1162,7 +1254,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1174,7 +1266,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

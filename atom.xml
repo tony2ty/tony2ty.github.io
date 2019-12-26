@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-12-25T01:11:15.766Z</updated>
+  <updated>2019-12-26T08:53:01.537Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>nrf52832广播时加入自定义UUID</title>
+    <link href="http://yoursite.com/2019/12/26/nrf52832%E5%B9%BF%E6%92%AD%E6%97%B6%E5%8A%A0%E5%85%A5%E8%87%AA%E5%AE%9A%E4%B9%89UUID/"/>
+    <id>http://yoursite.com/2019/12/26/nrf52832广播时加入自定义UUID/</id>
+    <published>2019-12-26T08:49:14.000Z</published>
+    <updated>2019-12-26T08:53:01.537Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="nrf52832广播时加入自定义UUID"><a href="#nrf52832广播时加入自定义UUID" class="headerlink" title="nrf52832广播时加入自定义UUID"></a>nrf52832广播时加入自定义UUID</h2><p>广播中包含自定义服务<code>UUID</code>与包含标准服务<code>UUID</code>是有所区别的，区别是数据长度不一致</p><ul><li>标准服务<code>UUID</code>，长度为2个字节</li><li>自定义服务<code>UUID</code>，长度为16个字节 </li></ul><p><img src="/2019/12/26/nrf52832%E5%B9%BF%E6%92%AD%E6%97%B6%E5%8A%A0%E5%85%A5%E8%87%AA%E5%AE%9A%E4%B9%89UUID/image-20191025161248136.png" alt="image-20191025161248136"></p><p><img src="/2019/12/26/nrf52832%E5%B9%BF%E6%92%AD%E6%97%B6%E5%8A%A0%E5%85%A5%E8%87%AA%E5%AE%9A%E4%B9%89UUID/Image.png" alt="Image"></p><p>在<code>SCAN_RSP</code>扫描响应中加入自定义<code>UUID</code></p><p><img src="/2019/12/26/nrf52832%E5%B9%BF%E6%92%AD%E6%97%B6%E5%8A%A0%E5%85%A5%E8%87%AA%E5%AE%9A%E4%B9%89UUID/image-20191025155930524.png" alt="image-20191025155930524"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;nrf52832广播时加入自定义UUID&quot;&gt;&lt;a href=&quot;#nrf52832广播时加入自定义UUID&quot; class=&quot;headerlink&quot; title=&quot;nrf52832广播时加入自定义UUID&quot;&gt;&lt;/a&gt;nrf52832广播时加入自定义UUID&lt;/h2&gt;&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="BLE" scheme="http://yoursite.com/categories/BLE/"/>
+    
+    
+      <category term="Nrf52832" scheme="http://yoursite.com/tags/Nrf52832/"/>
+    
+  </entry>
   
   <entry>
     <title>7.整数反转</title>

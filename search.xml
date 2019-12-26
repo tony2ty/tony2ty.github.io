@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>nrf52832广播时加入自定义UUID</title>
+    <url>/2019/12/26/nrf52832%E5%B9%BF%E6%92%AD%E6%97%B6%E5%8A%A0%E5%85%A5%E8%87%AA%E5%AE%9A%E4%B9%89UUID/</url>
+    <content><![CDATA[<h2 id="nrf52832广播时加入自定义UUID"><a href="#nrf52832广播时加入自定义UUID" class="headerlink" title="nrf52832广播时加入自定义UUID"></a>nrf52832广播时加入自定义UUID</h2><p>广播中包含自定义服务<code>UUID</code>与包含标准服务<code>UUID</code>是有所区别的，区别是数据长度不一致</p>
+<ul>
+<li>标准服务<code>UUID</code>，长度为2个字节</li>
+<li>自定义服务<code>UUID</code>，长度为16个字节 </li>
+</ul>
+<p><img src="/2019/12/26/nrf52832%E5%B9%BF%E6%92%AD%E6%97%B6%E5%8A%A0%E5%85%A5%E8%87%AA%E5%AE%9A%E4%B9%89UUID/image-20191025161248136.png" alt="image-20191025161248136"></p>
+<p><img src="/2019/12/26/nrf52832%E5%B9%BF%E6%92%AD%E6%97%B6%E5%8A%A0%E5%85%A5%E8%87%AA%E5%AE%9A%E4%B9%89UUID/Image.png" alt="Image"></p>
+<p>在<code>SCAN_RSP</code>扫描响应中加入自定义<code>UUID</code></p>
+<p><img src="/2019/12/26/nrf52832%E5%B9%BF%E6%92%AD%E6%97%B6%E5%8A%A0%E5%85%A5%E8%87%AA%E5%AE%9A%E4%B9%89UUID/image-20191025155930524.png" alt="image-20191025155930524"></p>
+]]></content>
+      <categories>
+        <category>BLE</category>
+      </categories>
+      <tags>
+        <tag>Nrf52832</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>7.整数反转</title>
     <url>/2019/12/25/7-%E6%95%B4%E6%95%B0%E5%8F%8D%E8%BD%AC/</url>
     <content><![CDATA[<h2 id="7-整数反转"><a href="#7-整数反转" class="headerlink" title="7. 整数反转"></a>7. 整数反转</h2><h3 id="难度"><a href="#难度" class="headerlink" title="难度"></a>难度</h3><p>简单</p>
