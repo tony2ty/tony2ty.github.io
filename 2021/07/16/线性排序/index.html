@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.jpg">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"tony2ty.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="线性排序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线性排序">
+<meta property="og:url" content="https://tony2ty.github.io/2021/07/16/%E7%BA%BF%E6%80%A7%E6%8E%92%E5%BA%8F/index.html">
+<meta property="og:site_name" content="Stay Hungry Stay Foolish">
+<meta property="og:description" content="线性排序">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tony2ty.github.io/2021/07/16/%E7%BA%BF%E6%80%A7%E6%8E%92%E5%BA%8F/image-20210716211721843.png">
+<meta property="og:image" content="https://tony2ty.github.io/2021/07/16/%E7%BA%BF%E6%80%A7%E6%8E%92%E5%BA%8F/image-20210716221419558.png">
+<meta property="og:image" content="https://tony2ty.github.io/2021/07/16/%E7%BA%BF%E6%80%A7%E6%8E%92%E5%BA%8F/image-20210716221533989.png">
+<meta property="og:image" content="https://tony2ty.github.io/2021/07/16/%E7%BA%BF%E6%80%A7%E6%8E%92%E5%BA%8F/image-20210716221633038.png">
+<meta property="og:image" content="https://tony2ty.github.io/2021/07/16/%E7%BA%BF%E6%80%A7%E6%8E%92%E5%BA%8F/image-20210716221721499.png">
+<meta property="og:image" content="https://tony2ty.github.io/2021/07/16/%E7%BA%BF%E6%80%A7%E6%8E%92%E5%BA%8F/image-20210716214742827.png">
+<meta property="article:published_time" content="2021-07-16T12:41:36.000Z">
+<meta property="article:modified_time" content="2021-07-16T14:48:01.673Z">
+<meta property="article:author" content="理性乐观π">
+<meta property="article:tag" content="线性排序">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tony2ty.github.io/2021/07/16/%E7%BA%BF%E6%80%A7%E6%8E%92%E5%BA%8F/image-20210716211721843.png">
+
+<link rel="canonical" href="https://tony2ty.github.io/2021/07/16/%E7%BA%BF%E6%80%A7%E6%8E%92%E5%BA%8F/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>线性排序 | Stay Hungry Stay Foolish</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Stay Hungry Stay Foolish</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">22</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">6</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">67</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://tony2ty.github.io/2021/07/16/%E7%BA%BF%E6%80%A7%E6%8E%92%E5%BA%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="理性乐观π">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay Hungry Stay Foolish">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          线性排序
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-07-16 20:41:36 / 修改时间：22:48:01" itemprop="dateCreated datePublished" datetime="2021-07-16T20:41:36+08:00">2021-07-16</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+            <div class="post-description">线性排序</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="线性排序"><a href="#线性排序" class="headerlink" title="线性排序"></a>线性排序</h1><h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h2><p>之所以叫线性排序，是因为排序算法的时间复杂度为$O(n)$。包括桶排序、计数排序、基数排序。</p>
+<h2 id="2-桶排序"><a href="#2-桶排序" class="headerlink" title="2. 桶排序"></a>2. 桶排序</h2><h3 id="2-1-原理"><a href="#2-1-原理" class="headerlink" title="2.1 原理"></a>2.1 原理</h3><p>将n个数据平均分到$m$个桶（有序桶）中，每个桶分$k$ 个数据，$k = n/m$。对每个桶使用快速排序，则总的时间夫复杂度$m * klogk = nlog \frac{n}{m}$，如果$m$接近于$n$，则时间复杂度接近于$O(n)$。</p>
+<p>分为三步</p>
+<p>一、将数据划分到$m$个桶内</p>
+<p>二、对每个桶内数据使用快速排序算法</p>
+<p>三、将所有桶内数据组合起来即可</p>
+<p><img src="/2021/07/16/%E7%BA%BF%E6%80%A7%E6%8E%92%E5%BA%8F/image-20210716211721843.png" alt="image-20210716211721843"></p>
+<h3 id="2-2-限制"><a href="#2-2-限制" class="headerlink" title="2.2 限制"></a>2.2 限制</h3><p>桶排序如此优秀，是不是可以用桶排序代替其他排序方法？不能代替，因为桶排序堆数据的要求比较高，</p>
+<p>一是，数据能划分到$m$个桶内，且桶与桶之间是有序的。</p>
+<p>二是，数据能均匀到分布到每个桶内，最坏情况数据集中在一个桶内。</p>
+<p>比如将500W考生的高考分数按照高低排序，此时就能使用桶排序，比如分数在0~750之间，此时就能使用751个桶，每个桶对应分数相同的考生，此时按照从高到底的顺序依次输出即可。</p>
+<h3 id="2-3-代码实现"><a href="#2-3-代码实现" class="headerlink" title="2.3 代码实现"></a>2.3 代码实现</h3><h3 id="2-4-性能分析"><a href="#2-4-性能分析" class="headerlink" title="2.4 性能分析"></a>2.4 性能分析</h3><h4 id="2-4-1-执行效率"><a href="#2-4-1-执行效率" class="headerlink" title="2.4.1 执行效率"></a>2.4.1 执行效率</h4><p>时间复杂度为$O(n)$</p>
+<h4 id="2-4-2-内存消耗"><a href="#2-4-2-内存消耗" class="headerlink" title="2.4.2 内存消耗"></a>2.4.2 内存消耗</h4><p>空间复杂度为$O(n)$？</p>
+<h4 id="2-4-3-稳定性"><a href="#2-4-3-稳定性" class="headerlink" title="2.4.3 稳定性"></a>2.4.3 稳定性</h4><p>桶排序的稳定性取决于桶内排序使用的算法。桶内排序采用归并排序则稳定，采用快排则非稳定。</p>
+<h2 id="3-计数排序"><a href="#3-计数排序" class="headerlink" title="3. 计数排序"></a>3. 计数排序</h2><h3 id="3-1-原理"><a href="#3-1-原理" class="headerlink" title="3.1 原理"></a>3.1 原理</h3><p>计数排序是桶排序的特例，</p>
+<p>假设只有8个考生，分数在0到5分之间。这8个考生的成绩我们放在一个数组A[8]中，它们分别是：2，5，3，0，2，3，0，3。</p>
+<p>考生的成绩从0到5分，我们使用大小为6的数组C[6]表示桶，其中下标对应分数。</p>
+<p><img src="/2021/07/16/%E7%BA%BF%E6%80%A7%E6%8E%92%E5%BA%8F/image-20210716221419558.png" alt="image-20210716221419558"></p>
+<p>我们对C[6]数组顺序求和，C[6]存储的数据就变成了下面这样子。C[k]里存储小于等于分数k的考生个数。</p>
+<p><img src="/2021/07/16/%E7%BA%BF%E6%80%A7%E6%8E%92%E5%BA%8F/image-20210716221533989.png" alt="image-20210716221533989"></p>
+<p>从后到前依次扫描数组A。比如，当扫描到3时，我们可以从数组C中取出下标为3的值7，即到目前为止，包括自己在内，分数小于等于3的考生有7个，也就是说3是数组R中的第7个元素（也就是数组R中下标为6的位置）。当3放入到数组R中后，小于等于3的元素就只剩下了6个了，所以相应的C[3]要减1，变成6。以此类推，当我们扫描到第2个分数为3的考生的时候，就会把它放入数组R中的第6个元素的位置（也就是下标为5的位置）。当我们扫描完整个数组A后，数组R内的数据就是按照分数从小到大有序排列了。</p>
+<p><img src="/2021/07/16/%E7%BA%BF%E6%80%A7%E6%8E%92%E5%BA%8F/image-20210716221633038.png" alt="image-20210716221633038"></p>
+<p><img src="/2021/07/16/%E7%BA%BF%E6%80%A7%E6%8E%92%E5%BA%8F/image-20210716221721499.png" alt="image-20210716221721499"></p>
+<h3 id="3-2-代码实现"><a href="#3-2-代码实现" class="headerlink" title="3.2 代码实现"></a>3.2 代码实现</h3><pre class=" language-C"><code class="language-C">void countingSort(int a[], int n) {
+    if (n <= 1) return;
+// 查找数组中数据的范围
+    int max = a[0];
+    for (int i = 1; i < n; ++i) {
+        if (max < a[i]) {
+            max = a[i];
+        }
+    }
+
+    int *c = malloc(sizeof(int) * (max + 1));  // 申请⼀个计数数组c，下标⼤⼩[0,max]
+    for (int i = 0; i <= max; ++i) {
+        c[i] = 0;
+    }
+// 计算每个元素的个数，放⼊c中
+    for (int i = 0; i < n; ++i) {
+        c[a[i]]++;
+    }
+    for (int i = 0; i <= max; ++i) {
+        printf("%d ", c[i]);
+    }
+    printf("\r\n");
+
+
+// 依次累加
+    for (int i = 1; i <= max; ++i) {
+        c[i] = c[i-1] + c[i];
+    }
+
+    for (int i = 0; i <= max; ++i) {
+        printf("%d ", c[i]);
+    }
+    printf("\r\n");
+
+// 临时数组r，存储排序之后的结果
+    int *r = malloc(sizeof(int) * n);
+// 计算排序的关键步骤，有点难理解
+    for (int i = n - 1; i >= 0; --i) {  //从尾部开始取数据
+        int index = c[a[i]]-1;
+        r[index] = a[i];
+
+        printf("%d %d %d %d\r\n", index, c[a[i]], a[i], r[index]);
+
+        c[a[i]]--;
+    }
+// 将结果拷⻉给a数组
+    for (int i = 0; i < n; ++i) {
+        a[i] = r[i];
+    }
+    free(r);
+    free(c);
+}
+</code></pre>
+<h3 id="3-3-性能分析"><a href="#3-3-性能分析" class="headerlink" title="3.3 性能分析"></a>3.3 性能分析</h3><h4 id="3-3-1-执行效率"><a href="#3-3-1-执行效率" class="headerlink" title="3.3.1 执行效率"></a>3.3.1 执行效率</h4><p>时间复杂度为$O(n)$</p>
+<h4 id="3-3-2-内存消耗"><a href="#3-3-2-内存消耗" class="headerlink" title="3.3.2 内存消耗"></a>3.3.2 内存消耗</h4><p>空间复杂度为$O(n)$</p>
+<h4 id="3-3-3-稳定性"><a href="#3-3-3-稳定性" class="headerlink" title="3.3.3 稳定性"></a>3.3.3 稳定性</h4><p>如果数据从头开始取就不是稳定排序，从尾部开始取是稳定排序</p>
+<h2 id="4-基数排序"><a href="#4-基数排序" class="headerlink" title="4. 基数排序"></a>4. 基数排序</h2><p>如果对一组手机号码进行排序，桶排序就不适用了。</p>
+<h3 id="4-1-原理"><a href="#4-1-原理" class="headerlink" title="4.1 原理"></a>4.1 原理</h3><p>如果有10个手机号码，从小到大排序，要求时间复杂度$O(n)$。</p>
+<p>以11位手机号为例，先将最后一位按照桶排序或计数排序，然后按照最后第二位重新排序，以此类推，最后是第一位重新排序。最后得到号码就是按照从小到大的顺序排列。</p>
+<p>手机号码的特征是，某个号码第一位大于另一个号码，则该号码大于另一个号码，如果第一位相同，以此类推一直比较到第11位。</p>
+<p>时间复杂度，桶排序或计数排序的时间复杂度为$O(n)$，则基数排序的时间复杂度是$O(k*n)$，近似为$O(n)$。</p>
+<p><img src="/2021/07/16/%E7%BA%BF%E6%80%A7%E6%8E%92%E5%BA%8F/image-20210716214742827.png" alt="image-20210716214742827"></p>
+<h3 id="4-2-限制"><a href="#4-2-限制" class="headerlink" title="4.2 限制"></a>4.2 限制</h3><p>基数排序对数据有限制的，数据能按“位”排序，且位之间有递进关系，即如果数据a的高位比数据b大，则剩余位数不用比较。</p>
+<h3 id="4-3-代码实现"><a href="#4-3-代码实现" class="headerlink" title="4.3 代码实现"></a>4.3 代码实现</h3><h3 id="4-4-性能分析"><a href="#4-4-性能分析" class="headerlink" title="4.4 性能分析"></a>4.4 性能分析</h3><h4 id="4-4-1-执行效率"><a href="#4-4-1-执行效率" class="headerlink" title="4.4.1 执行效率"></a>4.4.1 执行效率</h4><p>时间复杂度为$O(n)$</p>
+<h4 id="4-4-2-内存消耗"><a href="#4-4-2-内存消耗" class="headerlink" title="4.4.2 内存消耗"></a>4.4.2 内存消耗</h4><p>空间复杂度为$O(1)$？</p>
+<h4 id="4-4-3-稳定性"><a href="#4-4-3-稳定性" class="headerlink" title="4.4.3 稳定性"></a>4.4.3 稳定性</h4><p>稳定排序</p>
+<h2 id="5-总结"><a href="#5-总结" class="headerlink" title="5. 总结"></a>5. 总结</h2><table>
+<thead>
+<tr>
+<th></th>
+<th>时间复杂度</th>
+<th>稳定排序</th>
+<th>原地排序</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>桶排序</td>
+<td>$O(n)$</td>
+<td>是</td>
+<td>否</td>
+</tr>
+<tr>
+<td>计数排序</td>
+<td>$O(n+k)$ k是数据范围</td>
+<td>是</td>
+<td>否</td>
+</tr>
+<tr>
+<td>基数排序</td>
+<td>$O(dn)$ d是维度</td>
+<td>是</td>
+<td>否</td>
+</tr>
+</tbody></table>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="理性乐观π 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="理性乐观π 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>理性乐观π
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://tony2ty.github.io/2021/07/16/%E7%BA%BF%E6%80%A7%E6%8E%92%E5%BA%8F/" title="线性排序">https://tony2ty.github.io/2021/07/16/线性排序/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%BA%BF%E6%80%A7%E6%8E%92%E5%BA%8F/" rel="tag"># 线性排序</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/07/16/%E4%B8%A2%E5%A4%B1%E7%9A%84%E6%95%B0%E5%AD%97/" rel="prev" title="丢失的数字">
+      <i class="fa fa-chevron-left"></i> 丢失的数字
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="理性乐观π"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">理性乐观π</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">67</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/tony2ty" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;tony2ty" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:753919770@qq.com" title="E-Mail → mailto:753919770@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+	
+	  <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+	  <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+	  <div class="widget-wrap">
+		<h3 class="widget-title">标签云</h3>
+		<div id="myCanvasContainer" class="widget tagcloud">
+		  <canvas width="250" height="250" id="resCanvas" style="width:100%">
+			<ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BLE/" rel="tag">BLE</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Esp8266/" rel="tag">Esp8266</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MQTT/" rel="tag">MQTT</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NRF52832/" rel="tag">NRF52832</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Onenet/" rel="tag">Onenet</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/USB/" rel="tag">USB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/" rel="tag">leetcode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8C%E5%88%86%E6%B3%95/" rel="tag">二分法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" rel="tag">二叉树</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag">动态规划</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/" rel="tag">双指针</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6/" rel="tag">可执行文件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag">字符串</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" rel="tag">快速排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8E%92%E5%BA%8F/" rel="tag">排序</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%A3%E5%88%97%E8%A1%A8/" rel="tag">散列表</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E7%BB%84/" rel="tag">数组</a><span class="tag-list-count">36</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A0%88/" rel="tag">栈</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BA%BF%E6%80%A7%E6%8E%92%E5%BA%8F/" rel="tag">线性排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8F/" rel="tag">计数排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%80%92%E5%BD%92/" rel="tag">递归</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%93%BE%E8%A1%A8/" rel="tag">链表</a><span class="tag-list-count">12</span></li></ul>
+		  </canvas>
+		</div>
+	  </div>
+	
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">理性乐观π</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">63k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">57 分钟</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
