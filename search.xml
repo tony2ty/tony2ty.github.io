@@ -866,8 +866,7 @@ void LED_GetValue(void)
       </categories>
       <tags>
         <tag>数组</tag>
-        <tag>双指针</tag>
-        <tag>leetcode</tag>
+        <tag>双指针法</tag>
       </tags>
   </entry>
   <entry>
@@ -1122,7 +1121,7 @@ void LED_GetValue(void)
       </categories>
       <tags>
         <tag>数组</tag>
-        <tag>二分法</tag>
+        <tag>二分查找法</tag>
       </tags>
   </entry>
   <entry>
@@ -4631,6 +4630,7 @@ F(n) = F(n - 1) + F(n - 2)，其中 n &gt; 1
     <title>环形链表</title>
     <url>/2021/07/11/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8/</url>
     <content><![CDATA[<h4 id="141-环形链表"><a href="#141-环形链表" class="headerlink" title="141. 环形链表"></a><a href="https://leetcode-cn.com/problems/linked-list-cycle/">141. 环形链表</a></h4><p>难度：简单</p>
+<hr>
 <p>给定一个链表，判断链表中是否有环。</p>
 <p>如果链表中有某个节点，可以通过连续跟踪 <code>next</code> 指针再次到达，则链表中存在环。 为了表示给定链表中的环，我们使用整数 <code>pos</code> 来表示链表尾连接到链表中的位置（索引从 0 开始）。 如果 <code>pos</code> 是 <code>-1</code>，则在该链表中没有环。<strong>注意：<code>pos</code> 不作为参数进行传递</strong>，仅仅是为了标识链表的实际情况。</p>
 <p>如果链表中存在环，则返回 <code>true</code> 。 否则，返回 <code>false</code> 。</p>
@@ -4712,7 +4712,7 @@ bool <span class="token function">hasCycle</span><span class="token punctuation"
       </categories>
       <tags>
         <tag>链表</tag>
-        <tag>双指针</tag>
+        <tag>双指针法</tag>
       </tags>
   </entry>
   <entry>
