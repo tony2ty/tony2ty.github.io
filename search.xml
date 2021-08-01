@@ -6873,7 +6873,7 @@ target = &quot;k&quot;
 <p>提交次数58,606</p>
 <p><strong>解题思路</strong></p>
 <p><strong>枚举法</strong></p>
-<p>时间复杂度：$O(logn)$</p>
+<p>时间复杂度：$O(n)$</p>
 <p>空间复杂度：$O(1)$</p>
 <p>枚举法需要考虑单个元素出现的位置，数组起始位置、数组最后一个，数组中间位置。</p>
 <pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">singleNonDuplicate</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span> nums<span class="token punctuation">,</span> <span class="token keyword">int</span> numsSize<span class="token punctuation">)</span><span class="token punctuation">{</span>
@@ -6937,6 +6937,8 @@ target = &quot;k&quot;
 </ul>
 <p>最后判断左右两个哪个为奇数，为奇数则表明该侧存在单一元素，则可以计算low、high值。</p>
 <p>直到最后low mid high为同一个值，则循环终止。</p>
+<p>时间复杂度：$O(logn)$</p>
+<p>空间复杂度：$O(1)$</p>
 <pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">singleNonDuplicate</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span> nums<span class="token punctuation">,</span> <span class="token keyword">int</span> numsSize<span class="token punctuation">)</span><span class="token punctuation">{</span>
 
     <span class="token keyword">if</span> <span class="token punctuation">(</span>numsSize <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span>
