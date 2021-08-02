@@ -866,7 +866,8 @@ void LED_GetValue(void)
       </categories>
       <tags>
         <tag>数组</tag>
-        <tag>双指针法</tag>
+        <tag>双指针</tag>
+        <tag>leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -1121,7 +1122,7 @@ void LED_GetValue(void)
       </categories>
       <tags>
         <tag>数组</tag>
-        <tag>二分查找法</tag>
+        <tag>二分法</tag>
       </tags>
   </entry>
   <entry>
@@ -4630,7 +4631,6 @@ F(n) = F(n - 1) + F(n - 2)，其中 n &gt; 1
     <title>环形链表</title>
     <url>/2021/07/11/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8/</url>
     <content><![CDATA[<h4 id="141-环形链表"><a href="#141-环形链表" class="headerlink" title="141. 环形链表"></a><a href="https://leetcode-cn.com/problems/linked-list-cycle/">141. 环形链表</a></h4><p>难度：简单</p>
-<hr>
 <p>给定一个链表，判断链表中是否有环。</p>
 <p>如果链表中有某个节点，可以通过连续跟踪 <code>next</code> 指针再次到达，则链表中存在环。 为了表示给定链表中的环，我们使用整数 <code>pos</code> 来表示链表尾连接到链表中的位置（索引从 0 开始）。 如果 <code>pos</code> 是 <code>-1</code>，则在该链表中没有环。<strong>注意：<code>pos</code> 不作为参数进行传递</strong>，仅仅是为了标识链表的实际情况。</p>
 <p>如果链表中存在环，则返回 <code>true</code> 。 否则，返回 <code>false</code> 。</p>
@@ -4712,7 +4712,7 @@ bool <span class="token function">hasCycle</span><span class="token punctuation"
       </categories>
       <tags>
         <tag>链表</tag>
-        <tag>双指针法</tag>
+        <tag>双指针</tag>
       </tags>
   </entry>
   <entry>
@@ -7002,6 +7002,184 @@ target = &quot;k&quot;
       <tags>
         <tag>数组</tag>
         <tag>二分查找法</tag>
+        <tag>枚举法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>H指数II</title>
+    <url>/2021/08/02/H%E6%8C%87%E6%95%B0II/</url>
+    <content><![CDATA[<h4 id="275-H-指数-II"><a href="#275-H-指数-II" class="headerlink" title="275. H 指数 II"></a><a href="https://leetcode-cn.com/problems/h-index-ii/">275. H 指数 II</a></h4><p>难度：中等</p>
+<hr>
+<p>给你一个整数数组 <code>citations</code> ，其中 <code>citations[i]</code> 表示研究者的第 <code>i</code> 篇论文被引用的次数，<code>citations</code> 已经按照 <strong>升序排列</strong> 。计算并返回该研究者的 <strong><code>h</code> 指数</strong>。</p>
+<p><a href="https://baike.baidu.com/item/h-index/3991452?fr=aladdin">h 指数的定义</a>：h 代表“高引用次数”（high citations），一名科研人员的 h 指数是指他（她）的 （<code>n</code> 篇论文中）<strong>总共</strong>有 <code>h</code> 篇论文分别被引用了<strong>至少</strong> <code>h</code> 次。且其余的 <em><code>n - h</code></em> 篇论文每篇被引用次数 <strong>不超过</strong> <em><code>h</code></em> 次。</p>
+<p><strong>提示：</strong>如果 <code>h</code> 有多种可能的值，**<code>h</code> 指数** 是其中最大的那个。</p>
+<p>请你设计并实现对数时间复杂度的算法解决此问题。</p>
+<p><strong>示例 1：</strong></p>
+<pre><code>输入：citations = [0,1,3,5,6]
+输出：3 
+解释：给定数组表示研究者总共有 5 篇论文，每篇论文相应的被引用了 0, 1, 3, 5, 6 次。
+     由于研究者有 3 篇论文每篇 至少 被引用了 3 次，其余两篇论文每篇被引用 不多于 3 次，所以她的 h 指数是 3 。
+</code></pre>
+<p><strong>示例 2：</strong></p>
+<pre><code>输入：citations = [1,2,100]
+输出：2
+</code></pre>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>n == citations.length</code></li>
+<li><code>1 &lt;= n &lt;= 105</code></li>
+<li><code>0 &lt;= citations[i] &lt;= 1000</code></li>
+<li><code>citations</code> 按 <strong>升序排列</strong></li>
+</ul>
+<p>通过次数49,047</p>
+<p>提交次数105,657</p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">hIndex</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span> citations<span class="token punctuation">,</span> <span class="token keyword">int</span> citationsSize<span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+    <span class="token keyword">int</span> h <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> i <span class="token operator">=</span> citationsSize <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>i <span class="token operator">>=</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> citations<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">></span> h<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        h<span class="token operator">++</span><span class="token punctuation">;</span>
+        i<span class="token operator">--</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> h<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><img src="/2021/08/02/H%E6%8C%87%E6%95%B0II/image-20210802102943666.png" alt="image-20210802102943666"></p>
+]]></content>
+      <categories>
+        <category>数据结构与算法</category>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>数组</tag>
+        <tag>排序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>和为s的两个数字</title>
+    <url>/2021/08/02/%E5%92%8C%E4%B8%BAs%E7%9A%84%E4%B8%A4%E4%B8%AA%E6%95%B0%E5%AD%97/</url>
+    <content><![CDATA[<h4 id="剑指-Offer-57-和为s的两个数字"><a href="#剑指-Offer-57-和为s的两个数字" class="headerlink" title="剑指 Offer 57. 和为s的两个数字"></a><a href="https://leetcode-cn.com/problems/he-wei-sde-liang-ge-shu-zi-lcof/">剑指 Offer 57. 和为s的两个数字</a></h4><p>难度：简单</p>
+<p>输入一个递增排序的数组和一个数字s，在数组中查找两个数，使得它们的和正好是s。如果有多对数字的和等于s，则输出任意一对即可。</p>
+<p><strong>示例 1：</strong></p>
+<pre><code>输入：nums = [2,7,11,15], target = 9
+输出：[2,7] 或者 [7,2]
+</code></pre>
+<p><strong>示例 2：</strong></p>
+<pre><code>输入：nums = [10,26,30,31,47,60], target = 40
+输出：[10,30] 或者 [30,10]
+</code></pre>
+<p><strong>限制：</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 10^5</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 10^6</code></li>
+</ul>
+<p>通过次数115,164</p>
+<p>提交次数174,358</p>
+<p><strong>解题思路</strong></p>
+<p><strong>双指针法</strong></p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */</span>
+<span class="token keyword">int</span><span class="token operator">*</span> <span class="token function">twoSum</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span> nums<span class="token punctuation">,</span> <span class="token keyword">int</span> numsSize<span class="token punctuation">,</span> <span class="token keyword">int</span> target<span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token operator">*</span> returnSize<span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+    <span class="token keyword">int</span> <span class="token operator">*</span>array <span class="token operator">=</span> <span class="token function">malloc</span><span class="token punctuation">(</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> j <span class="token operator">=</span> numsSize <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numsSize <span class="token operator">&amp;&amp;</span> j <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> a <span class="token operator">=</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> nums<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>a <span class="token operator">==</span> target<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            array<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            array<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> nums<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            <span class="token operator">*</span>returnSize <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> array<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>a <span class="token operator">></span> target<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            j<span class="token operator">--</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span>
+        <span class="token punctuation">{</span>
+            i<span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token keyword">return</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><img src="/2021/08/02/%E5%92%8C%E4%B8%BAs%E7%9A%84%E4%B8%A4%E4%B8%AA%E6%95%B0%E5%AD%97/image-20210802100952391.png" alt="image-20210802100952391"></p>
+]]></content>
+      <categories>
+        <category>数据结构与算法</category>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>数组</tag>
+        <tag>双指针法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>魔术索引</title>
+    <url>/2021/08/02/%E9%AD%94%E6%9C%AF%E7%B4%A2%E5%BC%95/</url>
+    <content><![CDATA[<h4 id="面试题-08-03-魔术索引"><a href="#面试题-08-03-魔术索引" class="headerlink" title="面试题 08.03. 魔术索引"></a><a href="https://leetcode-cn.com/problems/magic-index-lcci/">面试题 08.03. 魔术索引</a></h4><p>难度：简单</p>
+<hr>
+<p>魔术索引。 在数组<code>A[0...n-1]</code>中，有所谓的魔术索引，满足条件<code>A[i] = i</code>。给定一个有序整数数组，编写一种方法找出魔术索引，若有的话，在数组A中找出一个魔术索引，如果没有，则返回-1。若有多个魔术索引，返回索引值最小的一个。</p>
+<p><strong>示例1:</strong></p>
+<pre><code> 输入：nums = [0, 2, 3, 4, 5]
+ 输出：0
+ 说明: 0下标的元素为0
+</code></pre>
+<p><strong>示例2:</strong></p>
+<pre><code> 输入：nums = [1, 1, 1]
+ 输出：1
+</code></pre>
+<p><strong>说明:</strong></p>
+<ol>
+<li>nums长度在[1, 1000000]之间</li>
+<li>此题为原书中的 Follow-up，即数组中可能包含重复元素的版本</li>
+</ol>
+<p>通过次数50,537</p>
+<p>提交次数74,644</p>
+<p><strong>解题思路</strong></p>
+<p>枚举法</p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">findMagicIndex</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span> nums<span class="token punctuation">,</span> <span class="token keyword">int</span> numsSize<span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numsSize<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> i<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> i<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><img src="/2021/08/02/%E9%AD%94%E6%9C%AF%E7%B4%A2%E5%BC%95/image-20210802092615922.png" alt="image-20210802092615922"></p>
+<p><strong>二分查找法</strong></p>
+<p>暂未搞明白</p>
+<p><strong>不容易理解的方法</strong></p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">findMagicIndex</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span> nums<span class="token punctuation">,</span> <span class="token keyword">int</span> numsSize<span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token function">fmax</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> nums<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numsSize<span class="token punctuation">;</span> i <span class="token operator">=</span> <span class="token function">fmax</span><span class="token punctuation">(</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>i <span class="token operator">==</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> i<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+
+    <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><img src="/2021/08/02/%E9%AD%94%E6%9C%AF%E7%B4%A2%E5%BC%95/image-20210802095849978.png" alt="image-20210802095849978"></p>
+]]></content>
+      <categories>
+        <category>数据结构与算法</category>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>数组</tag>
         <tag>枚举法</tag>
       </tags>
   </entry>
