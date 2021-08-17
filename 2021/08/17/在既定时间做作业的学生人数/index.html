@@ -20,24 +20,22 @@
     var CONFIG = {"hostname":"tony2ty.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="ONENET读取与控制麒麟座MINI开发板LED状态">
+  <meta name="description" content="在既定时间做作业的学生人数">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ONENET读取与控制麒麟座MINI开发板LED状态">
-<meta property="og:url" content="https://tony2ty.github.io/2019/11/04/ONENET%E8%AF%BB%E5%8F%96%E4%B8%8E%E6%8E%A7%E5%88%B6%E9%BA%92%E9%BA%9F%E5%BA%A7MINI%E5%BC%80%E5%8F%91%E6%9D%BFLED%E7%8A%B6%E6%80%81/index.html">
+<meta property="og:title" content="在既定时间做作业的学生人数">
+<meta property="og:url" content="https://tony2ty.github.io/2021/08/17/%E5%9C%A8%E6%97%A2%E5%AE%9A%E6%97%B6%E9%97%B4%E5%81%9A%E4%BD%9C%E4%B8%9A%E7%9A%84%E5%AD%A6%E7%94%9F%E4%BA%BA%E6%95%B0/index.html">
 <meta property="og:site_name" content="Stay Hungry Stay Foolish">
-<meta property="og:description" content="ONENET读取与控制麒麟座MINI开发板LED状态">
+<meta property="og:description" content="在既定时间做作业的学生人数">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://tony2ty.github.io/2019/11/04/ONENET%E8%AF%BB%E5%8F%96%E4%B8%8E%E6%8E%A7%E5%88%B6%E9%BA%92%E9%BA%9F%E5%BA%A7MINI%E5%BC%80%E5%8F%91%E6%9D%BFLED%E7%8A%B6%E6%80%81/1534058781353.png">
-<meta property="og:image" content="https://tony2ty.github.io/2019/11/04/ONENET%E8%AF%BB%E5%8F%96%E4%B8%8E%E6%8E%A7%E5%88%B6%E9%BA%92%E9%BA%9F%E5%BA%A7MINI%E5%BC%80%E5%8F%91%E6%9D%BFLED%E7%8A%B6%E6%80%81/1534058972096.png">
-<meta property="og:image" content="https://tony2ty.github.io/2019/11/04/ONENET%E8%AF%BB%E5%8F%96%E4%B8%8E%E6%8E%A7%E5%88%B6%E9%BA%92%E9%BA%9F%E5%BA%A7MINI%E5%BC%80%E5%8F%91%E6%9D%BFLED%E7%8A%B6%E6%80%81/1534058869807.png">
-<meta property="article:published_time" content="2019-11-04T08:30:30.000Z">
-<meta property="article:modified_time" content="2021-07-12T12:36:38.502Z">
+<meta property="og:image" content="https://tony2ty.github.io/2021/08/17/%E5%9C%A8%E6%97%A2%E5%AE%9A%E6%97%B6%E9%97%B4%E5%81%9A%E4%BD%9C%E4%B8%9A%E7%9A%84%E5%AD%A6%E7%94%9F%E4%BA%BA%E6%95%B0/image-20210817115042464.png">
+<meta property="article:published_time" content="2021-08-17T03:49:13.000Z">
+<meta property="article:modified_time" content="2021-08-17T03:56:03.899Z">
 <meta property="article:author" content="理性乐观π">
-<meta property="article:tag" content="Esp8266">
+<meta property="article:tag" content="数组">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://tony2ty.github.io/2019/11/04/ONENET%E8%AF%BB%E5%8F%96%E4%B8%8E%E6%8E%A7%E5%88%B6%E9%BA%92%E9%BA%9F%E5%BA%A7MINI%E5%BC%80%E5%8F%91%E6%9D%BFLED%E7%8A%B6%E6%80%81/1534058781353.png">
+<meta name="twitter:image" content="https://tony2ty.github.io/2021/08/17/%E5%9C%A8%E6%97%A2%E5%AE%9A%E6%97%B6%E9%97%B4%E5%81%9A%E4%BD%9C%E4%B8%9A%E7%9A%84%E5%AD%A6%E7%94%9F%E4%BA%BA%E6%95%B0/image-20210817115042464.png">
 
-<link rel="canonical" href="https://tony2ty.github.io/2019/11/04/ONENET%E8%AF%BB%E5%8F%96%E4%B8%8E%E6%8E%A7%E5%88%B6%E9%BA%92%E9%BA%9F%E5%BA%A7MINI%E5%BC%80%E5%8F%91%E6%9D%BFLED%E7%8A%B6%E6%80%81/">
+<link rel="canonical" href="https://tony2ty.github.io/2021/08/17/%E5%9C%A8%E6%97%A2%E5%AE%9A%E6%97%B6%E9%97%B4%E5%81%9A%E4%BD%9C%E4%B8%9A%E7%9A%84%E5%AD%A6%E7%94%9F%E4%BA%BA%E6%95%B0/">
 
 
 <script id="page-configurations">
@@ -50,7 +48,7 @@
   };
 </script>
 
-  <title>ONENET读取与控制麒麟座MINI开发板LED状态 | Stay Hungry Stay Foolish</title>
+  <title>在既定时间做作业的学生人数 | Stay Hungry Stay Foolish</title>
   
 
 
@@ -198,7 +196,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://tony2ty.github.io/2019/11/04/ONENET%E8%AF%BB%E5%8F%96%E4%B8%8E%E6%8E%A7%E5%88%B6%E9%BA%92%E9%BA%9F%E5%BA%A7MINI%E5%BC%80%E5%8F%91%E6%9D%BFLED%E7%8A%B6%E6%80%81/">
+    <link itemprop="mainEntityOfPage" href="https://tony2ty.github.io/2021/08/17/%E5%9C%A8%E6%97%A2%E5%AE%9A%E6%97%B6%E9%97%B4%E5%81%9A%E4%BD%9C%E4%B8%9A%E7%9A%84%E5%AD%A6%E7%94%9F%E4%BA%BA%E6%95%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -211,7 +209,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          ONENET读取与控制麒麟座MINI开发板LED状态
+          在既定时间做作业的学生人数
         </h1>
 
         <div class="post-meta">
@@ -220,23 +218,21 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2019-11-04 16:30:30" itemprop="dateCreated datePublished" datetime="2019-11-04T16:30:30+08:00">2019-11-04</time>
+              <time title="创建时间：2021-08-17 11:49:13 / 修改时间：11:56:03" itemprop="dateCreated datePublished" datetime="2021-08-17T11:49:13+08:00">2021-08-17</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-12 20:36:38" itemprop="dateModified" datetime="2021-07-12T20:36:38+08:00">2021-07-12</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Onenet/" itemprop="url" rel="index"><span itemprop="name">Onenet</span></a>
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
                 </span>
             </span>
 
@@ -253,16 +249,16 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2k</span>
+              <span>1.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>1 分钟</span>
             </span>
-            <div class="post-description">ONENET读取与控制麒麟座MINI开发板LED状态</div>
+            <div class="post-description">在既定时间做作业的学生人数</div>
 
         </div>
       </header>
@@ -273,106 +269,63 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="ONENET读取与控制麒麟座MINI开发板LED状态"><a href="#ONENET读取与控制麒麟座MINI开发板LED状态" class="headerlink" title="ONENET读取与控制麒麟座MINI开发板LED状态"></a>ONENET读取与控制麒麟座MINI开发板LED状态</h2><h3 id="硬件"><a href="#硬件" class="headerlink" title="硬件"></a>硬件</h3><p>麒麟座MINI开发板V1.4</p>
-<h3 id="嵌入式软件"><a href="#嵌入式软件" class="headerlink" title="嵌入式软件"></a>嵌入式软件</h3><p>OneNET_Demo_ESP8266_EDP_Led</p>
-<h3 id="工程修改内容"><a href="#工程修改内容" class="headerlink" title="工程修改内容"></a>工程修改内容</h3><ol>
-<li>led.c文件修改<ul>
-<li>函数LED_Init，mini开发板LED所在GPIO为PB6、PB7、PB8、PB9</li>
-<li>函数LED_GetValue，mini开发板LED状态与IO口状态相反</li>
+        <h4 id="1450-在既定时间做作业的学生人数"><a href="#1450-在既定时间做作业的学生人数" class="headerlink" title="1450. 在既定时间做作业的学生人数"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/number-of-students-doing-homework-at-a-given-time/">1450. 在既定时间做作业的学生人数</a></h4><p>难度：简单</p>
+<hr>
+<p>给你两个整数数组 <code>startTime</code>（开始时间）和 <code>endTime</code>（结束时间），并指定一个整数 <code>queryTime</code> 作为查询时间。</p>
+<p>已知，第 <code>i</code> 名学生在 <code>startTime[i]</code> 时开始写作业并于 <code>endTime[i]</code> 时完成作业。</p>
+<p>请返回在查询时间 <code>queryTime</code> 时正在做作业的学生人数。形式上，返回能够使 <code>queryTime</code> 处于区间 <code>[startTime[i], endTime[i]]</code>（含）的学生人数。</p>
+<p><strong>示例 1：</strong></p>
+<pre><code>输入：startTime = [1,2,3], endTime = [3,2,7], queryTime = 4
+输出：1
+解释：一共有 3 名学生。
+第一名学生在时间 1 开始写作业，并于时间 3 完成作业，在时间 4 没有处于做作业的状态。
+第二名学生在时间 2 开始写作业，并于时间 2 完成作业，在时间 4 没有处于做作业的状态。
+第三名学生在时间 3 开始写作业，预计于时间 7 完成作业，这是是唯一一名在时间 4 时正在做作业的学生。
+</code></pre>
+<p><strong>示例 2：</strong></p>
+<pre><code>输入：startTime = [4], endTime = [4], queryTime = 4
+输出：1
+解释：在查询时间只有一名学生在做作业。
+</code></pre>
+<p><strong>示例 3：</strong></p>
+<pre><code>输入：startTime = [4], endTime = [4], queryTime = 5
+输出：0
+</code></pre>
+<p><strong>示例 4：</strong></p>
+<pre><code>输入：startTime = [1,1,1,1], endTime = [1,3,2,4], queryTime = 7
+输出：0
+</code></pre>
+<p><strong>示例 5：</strong></p>
+<pre><code>输入：startTime = [9,8,7,6,5,4,3,2,1], endTime = [10,10,10,10,10,10,10,10,10], queryTime = 5
+输出：5
+</code></pre>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>startTime.length == endTime.length</code></li>
+<li><code>1 &lt;= startTime.length &lt;= 100</code></li>
+<li><code>1 &lt;= startTime[i] &lt;= endTime[i] &lt;= 1000</code></li>
+<li><code>1 &lt;= queryTime &lt;= 1000</code></li>
 </ul>
-</li>
-</ol>
-<pre class=" language-C"><code class="language-C">/**
-  * @brief  LED指示灯初始化函数
-**/
-void LED_Init(void)
-{
-    GPIO_InitTypeDef GPIO_InitStructure;
-    //PB9--对应开发板红色指示灯;PB8--对应开发板绿色指示灯;
-    //PB7--对应开发板黄色指示灯;PB6---对应开发板蓝色指示灯
-    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6|GPIO_Pin_7|GPIO_Pin_8|GPIO_Pin_9;
-    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
-    GPIO_Init(GPIOB, &GPIO_InitStructure);
-}
+<p>通过次数23,528</p>
+<p>提交次数29,332</p>
+<p><strong>性能分析</strong></p>
+<p>时间复杂度：$O(n)$​​​​</p>
+<p>空间复杂度：$O(1)$</p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">busyStudent</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span> startTime<span class="token punctuation">,</span> <span class="token keyword">int</span> startTimeSize<span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token operator">*</span> endTime<span class="token punctuation">,</span> <span class="token keyword">int</span> endTimeSize<span class="token punctuation">,</span> <span class="token keyword">int</span> queryTime<span class="token punctuation">)</span><span class="token punctuation">{</span>
 
-/**
-  * @brief  获取LED的当前状态值
-**/
-void LED_GetValue(void)
-{
-        if(GPIO_ReadOutputDataBit(GPIOB, GPIO_Pin_9))
-        {
-                red_value=0;
-        }
-        else
-        {
-                red_value=1;
-        }
-        if(GPIO_ReadOutputDataBit(GPIOB, GPIO_Pin_6))
-        {
-                blue_value=0;
-        }
-        else
-        {
-                blue_value=1;
-        }
-        if(GPIO_ReadOutputDataBit(GPIOB, GPIO_Pin_8))
-        {
-                green_value=0;
-        }
-        else
-        {
-                green_value=1;
-        }
-        if(GPIO_ReadOutputDataBit(GPIOB, GPIO_Pin_7))                                
-        {
-                yellow_value=0;
-        }
-        else
-        {
-                yellow_value=1;
-        }
-}
+    <span class="token keyword">int</span> cnt <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> startTimeSize<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>startTime<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;=</span> queryTime <span class="token operator">&amp;&amp;</span> endTime<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">>=</span> queryTime<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            cnt<span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token keyword">return</span> cnt<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
-<ol start="2">
-<li>led.h文件修改</li>
-</ol>
-<pre class=" language-C"><code class="language-C">#define  LED_RED_OFF       GPIO_SetBits(GPIOB,GPIO_Pin_9)
-#define  LED_GREEN_OFF     GPIO_SetBits(GPIOB,GPIO_Pin_8)
-#define  LED_YELLOW_OFF    GPIO_SetBits(GPIOB,GPIO_Pin_7)
-#define  LED_BLUE_OFF      GPIO_SetBits(GPIOB,GPIO_Pin_6)
-
-#define  LED_RED_ON        GPIO_ResetBits(GPIOB,GPIO_Pin_9)
-#define  LED_GREEN_ON      GPIO_ResetBits(GPIOB,GPIO_Pin_8)
-#define  LED_YELLOW_ON     GPIO_ResetBits(GPIOB,GPIO_Pin_7)
-#define  LED_BLUE_ON       GPIO_ResetBits(GPIOB,GPIO_Pin_6)
-</code></pre>
-<ol start="3">
-<li>ESP8266.h文件修改</li>
-</ol>
-<pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">define</span> API_KEY     "DXZcCKxqrpxZJKWFnbMzxIjeITk="  </span><span class="token comment" spellcheck="true">//API_KEY 需要修改为用户自己的对应参数</span>
-<span class="token macro property">#<span class="token directive keyword">define</span> DEV_ID      "1078702"                       </span><span class="token comment" spellcheck="true">//设备ID  需要修改为用户自己的对应参数</span>
-<span class="token macro property">#<span class="token directive keyword">define</span> CWJAP       "AT+CWJAP=\"ONENET\",\"\"\r\n"    </span><span class="token comment" spellcheck="true">//ssid: onenet 密码：空</span>
-</code></pre>
-<pre><code>前两个宏定义OneNET平台相关，最后一个WIFI的SSID名称以及密码，这三个宏根据自己的需要修改
-</code></pre>
-<h3 id="OneNET平台操作"><a href="#OneNET平台操作" class="headerlink" title="OneNET平台操作"></a>OneNET平台操作</h3><ol>
-<li>设置GPIO状态</li>
-</ol>
-<p><img src="/2019/11/04/ONENET%E8%AF%BB%E5%8F%96%E4%B8%8E%E6%8E%A7%E5%88%B6%E9%BA%92%E9%BA%9F%E5%BA%A7MINI%E5%BC%80%E5%8F%91%E6%9D%BFLED%E7%8A%B6%E6%80%81/1534058781353.png" alt="1534058781353"></p>
-<p><img src="/2019/11/04/ONENET%E8%AF%BB%E5%8F%96%E4%B8%8E%E6%8E%A7%E5%88%B6%E9%BA%92%E9%BA%9F%E5%BA%A7MINI%E5%BC%80%E5%8F%91%E6%9D%BFLED%E7%8A%B6%E6%80%81/1534058972096.png" alt="1534058972096"></p>
-<p>上述命令实现点亮blue led</p>
-<ol start="2">
-<li>读取GPIO状态</li>
-</ol>
-<p><img src="/2019/11/04/ONENET%E8%AF%BB%E5%8F%96%E4%B8%8E%E6%8E%A7%E5%88%B6%E9%BA%92%E9%BA%9F%E5%BA%A7MINI%E5%BC%80%E5%8F%91%E6%9D%BFLED%E7%8A%B6%E6%80%81/1534058869807.png" alt="1534058869807"></p>
-<p> 目前显示BLUE点亮，其他三个LED熄灭</p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ol>
-<li><a target="_blank" rel="noopener" href="https://github.com/cm-heclouds/OneNET_demo_code_kylin/tree/master/OneNET_Demo_ESP8266_EDP_Led">https://github.com/cm-heclouds/OneNET_demo_code_kylin/tree/master/OneNET_Demo_ESP8266_EDP_Led</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/cm-heclouds/OneNET_demo_code_kylin/blob/master/OneNET_Demo_User_Guide.pdf">https://github.com/cm-heclouds/OneNET_demo_code_kylin/blob/master/OneNET_Demo_User_Guide.pdf</a></li>
-</ol>
+<p><img src="/2021/08/17/%E5%9C%A8%E6%97%A2%E5%AE%9A%E6%97%B6%E9%97%B4%E5%81%9A%E4%BD%9C%E4%B8%9A%E7%9A%84%E5%AD%A6%E7%94%9F%E4%BA%BA%E6%95%B0/image-20210817115042464.png" alt="image-20210817115042464"></p>
 
     </div>
 
@@ -408,7 +361,7 @@ void LED_GetValue(void)
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://tony2ty.github.io/2019/11/04/ONENET%E8%AF%BB%E5%8F%96%E4%B8%8E%E6%8E%A7%E5%88%B6%E9%BA%92%E9%BA%9F%E5%BA%A7MINI%E5%BC%80%E5%8F%91%E6%9D%BFLED%E7%8A%B6%E6%80%81/" title="ONENET读取与控制麒麟座MINI开发板LED状态">https://tony2ty.github.io/2019/11/04/ONENET读取与控制麒麟座MINI开发板LED状态/</a>
+    <a href="https://tony2ty.github.io/2021/08/17/%E5%9C%A8%E6%97%A2%E5%AE%9A%E6%97%B6%E9%97%B4%E5%81%9A%E4%BD%9C%E4%B8%9A%E7%9A%84%E5%AD%A6%E7%94%9F%E4%BA%BA%E6%95%B0/" title="在既定时间做作业的学生人数">https://tony2ty.github.io/2021/08/17/在既定时间做作业的学生人数/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -419,7 +372,7 @@ void LED_GetValue(void)
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Esp8266/" rel="tag"># Esp8266</a>
+              <a href="/tags/%E6%95%B0%E7%BB%84/" rel="tag"># 数组</a>
           </div>
 
         
@@ -428,13 +381,10 @@ void LED_GetValue(void)
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/11/04/usb-msc%E6%9E%9A%E4%B8%BE%E8%BF%87%E7%A8%8B/" rel="prev" title="usb_msc枚举过程">
-      <i class="fa fa-chevron-left"></i> usb_msc枚举过程
+    <a href="/2021/08/16/%E5%95%86%E5%93%81%E6%8A%98%E6%89%A3%E5%90%8E%E7%9A%84%E6%9C%80%E7%BB%88%E4%BB%B7%E6%A0%BC/" rel="prev" title="商品折扣后的最终价格">
+      <i class="fa fa-chevron-left"></i> 商品折扣后的最终价格
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2019/11/04/ble%E7%A9%BA%E4%B8%AD%E5%8C%85%E6%A0%BC%E5%BC%8F/" rel="next" title="ble空中包格式">
-      ble空中包格式 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -660,6 +610,61 @@ void LED_GetValue(void)
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
