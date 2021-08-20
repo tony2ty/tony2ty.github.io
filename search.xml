@@ -8833,4 +8833,141 @@ DataType <span class="token function">GetTop</span><span class="token punctuatio
         <tag>数组</tag>
       </tags>
   </entry>
+  <entry>
+    <title>剑指OfferII038.每日温度</title>
+    <url>/2021/08/20/%E5%89%91%E6%8C%87OfferII038-%E6%AF%8F%E6%97%A5%E6%B8%A9%E5%BA%A6/</url>
+    <content><![CDATA[<h4 id="剑指-Offer-II-038-每日温度"><a href="#剑指-Offer-II-038-每日温度" class="headerlink" title="剑指 Offer II 038. 每日温度"></a><a href="https://leetcode-cn.com/problems/iIQa4I/">剑指 Offer II 038. 每日温度</a></h4><p>难度：中等</p>
+<hr>
+<p>请根据每日 <code>气温</code> 列表 <code>temperatures</code> ，重新生成一个列表，要求其对应位置的输出为：要想观测到更高的气温，至少需要等待的天数。如果气温在这之后都不会升高，请在该位置用 <code>0</code> 来代替。</p>
+<p><strong>示例 1:</strong></p>
+<pre><code>输入: temperatures = [73,74,75,71,69,72,76,73]
+输出: [1,1,4,2,1,1,0,0]
+</code></pre>
+<p><strong>示例 2:</strong></p>
+<pre><code>输入: temperatures = [30,40,50,60]
+输出: [1,1,1,0]
+</code></pre>
+<p><strong>示例 3:</strong></p>
+<pre><code>输入: temperatures = [30,60,90]
+输出: [1,1,0]
+</code></pre>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= temperatures.length &lt;= 105</code></li>
+<li><code>30 &lt;= temperatures[i] &lt;= 100</code></li>
+</ul>
+<p>注意：本题与主站 739 题相同： <a href="https://leetcode-cn.com/problems/daily-temperatures/">https://leetcode-cn.com/problems/daily-temperatures/</a></p>
+<p>通过次数629</p>
+<p>提交次数805</p>
+<p><strong>性能分析</strong></p>
+<p>时间复杂度：$O(n)$​​​​</p>
+<p>空间复杂度：$O(n)$</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */</span>
+<span class="token keyword">int</span><span class="token operator">*</span> <span class="token function">dailyTemperatures</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span> temperatures<span class="token punctuation">,</span> <span class="token keyword">int</span> temperaturesSize<span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token operator">*</span> returnSize<span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+    <span class="token keyword">int</span> <span class="token operator">*</span>stack <span class="token operator">=</span> <span class="token function">malloc</span><span class="token punctuation">(</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span> <span class="token operator">*</span> temperaturesSize<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> top <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// int *temper = malloc(sizeof(int) * temperaturesSize);</span>
+    <span class="token function">memset</span><span class="token punctuation">(</span>stack<span class="token punctuation">,</span> <span class="token number">0x00</span><span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span> <span class="token operator">*</span> temperaturesSize<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// memset(temper, 0x00, sizeof(int) * temperaturesSize);</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> temperaturesSize<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// printf("a %d %d\n", top, i);</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>top <span class="token operator">>=</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> temperatures<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">></span> temperatures<span class="token punctuation">[</span>stack<span class="token punctuation">[</span>top<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// printf("b %d %d %d\n", temperatures[i], temperatures[stack[top]], stack[top]);</span>
+            temperatures<span class="token punctuation">[</span>stack<span class="token punctuation">[</span>top<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> i <span class="token operator">-</span> stack<span class="token punctuation">[</span>top<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            top<span class="token operator">--</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        stack<span class="token punctuation">[</span><span class="token operator">++</span>top<span class="token punctuation">]</span> <span class="token operator">=</span> i<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>top <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        temperatures<span class="token punctuation">[</span>stack<span class="token punctuation">[</span>top<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        top<span class="token operator">--</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token operator">*</span>returnSize <span class="token operator">=</span> temperaturesSize<span class="token punctuation">;</span>
+    <span class="token function">free</span><span class="token punctuation">(</span>stack<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> temperatures<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><img src="/2021/08/20/%E5%89%91%E6%8C%87OfferII038-%E6%AF%8F%E6%97%A5%E6%B8%A9%E5%BA%A6/image-20210820093628106.png" alt="image-20210820093628106"></p>
+]]></content>
+      <categories>
+        <category>数据结构与算法</category>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>数组</tag>
+        <tag>单调栈</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>唯一元素的和</title>
+    <url>/2021/08/20/%E5%94%AF%E4%B8%80%E5%85%83%E7%B4%A0%E7%9A%84%E5%92%8C/</url>
+    <content><![CDATA[<h4 id="1748-唯一元素的和"><a href="#1748-唯一元素的和" class="headerlink" title="1748. 唯一元素的和"></a><a href="https://leetcode-cn.com/problems/sum-of-unique-elements/">1748. 唯一元素的和</a></h4><p>难度：简单</p>
+<hr>
+<p>给你一个整数数组 <code>nums</code> 。数组中唯一元素是那些只出现 <strong>恰好一次</strong> 的元素。</p>
+<p>请你返回 <code>nums</code> 中唯一元素的 <strong>和</strong> 。</p>
+<p><strong>示例 1：</strong></p>
+<pre><code>输入：nums = [1,2,3,2]
+输出：4
+解释：唯一元素为 [1,3] ，和为 4 。
+</code></pre>
+<p><strong>示例 2：</strong></p>
+<pre><code>输入：nums = [1,1,1,1,1]
+输出：0
+解释：没有唯一元素，和为 0 。
+</code></pre>
+<p><strong>示例 3 ：</strong></p>
+<pre><code>输入：nums = [1,2,3,4,5]
+输出：15
+解释：唯一元素为 [1,2,3,4,5] ，和为 15 。
+</code></pre>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 100</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 100</code></li>
+</ul>
+<p>通过次数10,211</p>
+<p>提交次数13,621</p>
+<p><strong>性能分析</strong></p>
+<p>时间复杂度：$O(n)$​​​​</p>
+<p>空间复杂度：$O(1)$</p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">sumOfUnique</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span> nums<span class="token punctuation">,</span> <span class="token keyword">int</span> numsSize<span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+    <span class="token keyword">int</span> array<span class="token punctuation">[</span><span class="token number">100</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numsSize<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        array<span class="token punctuation">[</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">int</span> sum <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">101</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>array<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            sum <span class="token operator">+</span><span class="token operator">=</span> i<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">return</span> sum<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><img src="/2021/08/20/%E5%94%AF%E4%B8%80%E5%85%83%E7%B4%A0%E7%9A%84%E5%92%8C/image-20210820085235277.png" alt="image-20210820085235277"></p>
+]]></content>
+      <categories>
+        <category>数据结构与算法</category>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>数组</tag>
+        <tag>散列表</tag>
+      </tags>
+  </entry>
 </search>
