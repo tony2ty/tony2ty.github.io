@@ -9407,4 +9407,72 @@ DataType <span class="token function">GetTop</span><span class="token punctuatio
         <tag>枚举法</tag>
       </tags>
   </entry>
+  <entry>
+    <title>gdbserver远程调试</title>
+    <url>/2021/08/26/gdbserver%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/</url>
+    <content><![CDATA[<h2 id="gdb与gdbserver与远程调试应用程序"><a href="#gdb与gdbserver与远程调试应用程序" class="headerlink" title="gdb与gdbserver与远程调试应用程序"></a>gdb与gdbserver与远程调试应用程序</h2><h3 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h3><p>软件：vmware+ubuntu</p>
+<p>硬件：imx6ull开发板</p>
+<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><ol>
+<li><p>开发板需要支持gdbserver命令才行</p>
+</li>
+<li><p>ubuntu系统的IP地址为<code>192.168.123.115</code>。开发板的IP地址为<code>192.168.123.117</code>。</p>
+</li>
+</ol>
+<h3 id="测试应用程序"><a href="#测试应用程序" class="headerlink" title="测试应用程序"></a>测试应用程序</h3><pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/*
+ * @Description: 
+ * @Version: 2.0
+ * @Autor: wuying
+ * @Date: 2021-03-22 14:24:02
+ * @LastEditors: wuying
+ * @LastEditTime: 2021-08-25 09:44:50
+ */</span>
+
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;signal.h></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;semaphore.h></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;sys/time.h></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdbool.h></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;fcntl.h></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdint.h></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span>argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"hello world\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>编译应用程序，注意编译选项中加入<code>-g</code>。生成的可执行文件为<code>hello</code>。</p>
+<p>将可执行文件<code>hello</code>拷贝到开发板。</p>
+<h3 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h3><p>在开发板上执行命令<code> gdbserver 192.168.123.117:6666 ./hello</code></p>
+<p><img src="/2021/08/26/gdbserver%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20210826094454312.png" alt="image-20210826094454312"></p>
+<p>在ubuntu系统命令行执行命令<code>arm-linux-gnueabihf-gdb ./hello</code>。在gdb命令下输入命令<code> target remote 192.168.123.117:6666</code>，该ip地址与端口号即开发板上gdbserver的ip与端口号。</p>
+<p><img src="/2021/08/26/gdbserver%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20210826094746070.png" alt="image-20210826094746070"></p>
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><h4 id="l命令"><a href="#l命令" class="headerlink" title="l命令"></a>l命令</h4><p>l命令 (list)用于列出所有程序源码，输入“ l”，结果如下图</p>
+<p><img src="/2021/08/26/gdbserver%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20210826095456160.png" alt="image-20210826095456160"></p>
+<h4 id="b命令"><a href="#b命令" class="headerlink" title="b命令"></a>b命令</h4><p>b命令 (break)用于设置断点，后面可以跟具体的函数或者行号，比如break main”表示在 main函数处设置断点，“ break 11”在第 11行设置断点。输入如下命令，在 25行处设置断点：</p>
+<p><img src="/2021/08/26/gdbserver%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20210826095635028.png" alt="image-20210826095635028"></p>
+<h4 id="c命令"><a href="#c命令" class="headerlink" title="c命令"></a>c命令</h4><p>c命令用于运行到断点出，输入 c命令程序就会运行，直到下一个断点处。</p>
+<p><img src="/2021/08/26/gdbserver%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20210826095835974.png" alt="image-20210826095835974"></p>
+<p>此时开发板上已经能看到响应信息输出</p>
+<p><img src="/2021/08/26/gdbserver%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20210826095933329.png" alt="image-20210826095933329"></p>
+<h4 id="s命令"><a href="#s命令" class="headerlink" title="s命令"></a>s命令</h4><p>s命令 (step)是单步运行执行，会进入到函数里面。</p>
+<h4 id="n命令"><a href="#n命令" class="headerlink" title="n命令"></a>n命令</h4><p>n命令 (next)也是单步运行，但是 n命令不会进入到函数里面。</p>
+<h4 id="p命令"><a href="#p命令" class="headerlink" title="p命令"></a>p命令</h4><p>p命令 (print)用于打印某个变量值。</p>
+<h4 id="q命令"><a href="#q命令" class="headerlink" title="q命令"></a>q命令</h4><p>q命令 (quit)用于退出调试，开发板上的 gdbserver也会停止。</p>
+]]></content>
+      <categories>
+        <category>嵌入式Linux</category>
+      </categories>
+      <tags>
+        <tag>gdb调试</tag>
+      </tags>
+  </entry>
 </search>
