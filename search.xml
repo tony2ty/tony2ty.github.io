@@ -9888,4 +9888,134 @@ nums 中最大的数是 3
         <tag>异或法</tag>
       </tags>
   </entry>
+  <entry>
+    <title>按奇偶排序数组II</title>
+    <url>/2021/08/30/%E6%8C%89%E5%A5%87%E5%81%B6%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84II/</url>
+    <content><![CDATA[<h4 id="922-按奇偶排序数组-II"><a href="#922-按奇偶排序数组-II" class="headerlink" title="922. 按奇偶排序数组 II"></a><a href="https://leetcode-cn.com/problems/sort-array-by-parity-ii/">922. 按奇偶排序数组 II</a></h4><p>难度：简单</p>
+<hr>
+<p>给定一个非负整数数组 <code>A</code>， A 中一半整数是奇数，一半整数是偶数。</p>
+<p>对数组进行排序，以便当 <code>A[i]</code> 为奇数时，<code>i</code> 也是奇数；当 <code>A[i]</code> 为偶数时， <code>i</code> 也是偶数。</p>
+<p>你可以返回任何满足上述条件的数组作为答案。</p>
+<p><strong>示例：</strong></p>
+<pre><code>输入：[4,2,5,7]
+输出：[4,5,2,7]
+解释：[4,7,2,5]，[2,5,4,7]，[2,7,4,5] 也会被接受。
+</code></pre>
+<p><strong>提示：</strong></p>
+<ol>
+<li><code>2 &lt;= A.length &lt;= 20000</code></li>
+<li><code>A.length % 2 == 0</code></li>
+<li><code>0 &lt;= A[i] &lt;= 1000</code></li>
+</ol>
+<p>通过次数88,813</p>
+<p>提交次数124,334</p>
+<p><strong>性能分析</strong></p>
+<p>时间复杂度：$O(n)$​​​​</p>
+<p>空间复杂度：$O(n)$</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */</span>
+<span class="token keyword">int</span><span class="token operator">*</span> <span class="token function">sortArrayByParityII</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span> nums<span class="token punctuation">,</span> <span class="token keyword">int</span> numsSize<span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token operator">*</span> returnSize<span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+    <span class="token keyword">int</span> array<span class="token punctuation">[</span><span class="token number">10000</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> array2<span class="token punctuation">[</span><span class="token number">10000</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> cnt <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> cnt2 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numsSize<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            array<span class="token punctuation">[</span>cnt<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            array2<span class="token punctuation">[</span>cnt2<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token operator">*</span>returnSize <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> k <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numsSize<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>i <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            nums<span class="token punctuation">[</span><span class="token punctuation">(</span><span class="token operator">*</span>returnSize<span class="token punctuation">)</span><span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> array<span class="token punctuation">[</span>j<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span>
+        <span class="token punctuation">{</span>
+            nums<span class="token punctuation">[</span><span class="token punctuation">(</span><span class="token operator">*</span>returnSize<span class="token punctuation">)</span><span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> array2<span class="token punctuation">[</span>k<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> nums<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><img src="/2021/08/30/%E6%8C%89%E5%A5%87%E5%81%B6%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84II/image-20210830091441162.png" alt="image-20210830091441162"></p>
+]]></content>
+      <categories>
+        <category>数据结构与算法</category>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>数组</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>判断能否形成等差数列</title>
+    <url>/2021/08/30/%E5%88%A4%E6%96%AD%E8%83%BD%E5%90%A6%E5%BD%A2%E6%88%90%E7%AD%89%E5%B7%AE%E6%95%B0%E5%88%97/</url>
+    <content><![CDATA[<h4 id="1502-判断能否形成等差数列"><a href="#1502-判断能否形成等差数列" class="headerlink" title="1502. 判断能否形成等差数列"></a><a href="https://leetcode-cn.com/problems/can-make-arithmetic-progression-from-sequence/">1502. 判断能否形成等差数列</a></h4><p>难度：简单</p>
+<hr>
+<p>给你一个数字数组 <code>arr</code> 。</p>
+<p>如果一个数列中，任意相邻两项的差总等于同一个常数，那么这个数列就称为 <strong>等差数列</strong> 。</p>
+<p>如果可以重新排列数组形成等差数列，请返回 <code>true</code> ；否则，返回 <code>false</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<pre><code>输入：arr = [3,5,1]
+输出：true
+解释：对数组重新排序得到 [1,3,5] 或者 [5,3,1] ，任意相邻两项的差分别为 2 或 -2 ，可以形成等差数列。
+</code></pre>
+<p><strong>示例 2：</strong></p>
+<pre><code>输入：arr = [1,2,4]
+输出：false
+解释：无法通过重新排序得到等差数列。
+</code></pre>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>2 &lt;= arr.length &lt;= 1000</code></li>
+<li><code>-10^6 &lt;= arr[i] &lt;= 10^6</code></li>
+</ul>
+<p>通过次数24,728</p>
+<p>提交次数34,463</p>
+<p><strong>性能分析</strong></p>
+<p>时间复杂度：$O(nlogn)$​​​​</p>
+<p>空间复杂度：$O(1)$</p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">cmpfunc</span> <span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">void</span> <span class="token operator">*</span> a<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">void</span> <span class="token operator">*</span> b<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+   <span class="token keyword">return</span> <span class="token punctuation">(</span> <span class="token operator">*</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span><span class="token punctuation">)</span>a <span class="token operator">-</span> <span class="token operator">*</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span><span class="token punctuation">)</span>b <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+bool <span class="token function">canMakeArithmeticProgression</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span> arr<span class="token punctuation">,</span> <span class="token keyword">int</span> arrSize<span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+    <span class="token function">qsort</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> arrSize<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">,</span> cmpfunc<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">int</span> diff <span class="token operator">=</span> arr<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">-</span> arr<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> arrSize<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">-</span> arr<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">!=</span> diff<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> false<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">return</span> true<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><img src="/2021/08/30/%E5%88%A4%E6%96%AD%E8%83%BD%E5%90%A6%E5%BD%A2%E6%88%90%E7%AD%89%E5%B7%AE%E6%95%B0%E5%88%97/image-20210830093057207.png" alt="image-20210830093057207"></p>
+]]></content>
+      <categories>
+        <category>数据结构与算法</category>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>数组</tag>
+        <tag>快速排序</tag>
+      </tags>
+  </entry>
 </search>
