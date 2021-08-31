@@ -10018,4 +10018,155 @@ bool <span class="token function">canMakeArithmeticProgression</span><span class
         <tag>快速排序</tag>
       </tags>
   </entry>
+  <entry>
+    <title>剑指Offer03.数组中重复的数字</title>
+    <url>/2021/08/31/%E5%89%91%E6%8C%87Offer03-%E6%95%B0%E7%BB%84%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97/</url>
+    <content><![CDATA[<h4 id="剑指-Offer-03-数组中重复的数字"><a href="#剑指-Offer-03-数组中重复的数字" class="headerlink" title="剑指 Offer 03. 数组中重复的数字"></a><a href="https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/">剑指 Offer 03. 数组中重复的数字</a></h4><p>难度：简单</p>
+<hr>
+<p>找出数组中重复的数字。</p>
+<p>在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。</p>
+<p><strong>示例 1：</strong></p>
+<pre><code>输入：
+[2, 3, 1, 0, 2, 5, 3]
+输出：2 或 3 
+</code></pre>
+<p><strong>限制：</strong></p>
+<pre><code>2 &lt;= n &lt;= 100000
+</code></pre>
+<p>通过次数376,115</p>
+<p>提交次数554,250</p>
+<p><strong>性能分析</strong></p>
+<p>时间复杂度：$O(n)$​​​​</p>
+<p>空间复杂度：$O(n)$</p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">findRepeatNumber</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span> nums<span class="token punctuation">,</span> <span class="token keyword">int</span> numsSize<span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+    <span class="token keyword">int</span> array<span class="token punctuation">[</span><span class="token number">100001</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numsSize<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        array<span class="token punctuation">[</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">100001</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>array<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">>=</span> <span class="token number">2</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> i<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><img src="/2021/08/31/%E5%89%91%E6%8C%87Offer03-%E6%95%B0%E7%BB%84%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97/image-20210831142807462.png" alt="image-20210831142807462"></p>
+<p>改进型</p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">findRepeatNumber</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span> nums<span class="token punctuation">,</span> <span class="token keyword">int</span> numsSize<span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+    <span class="token keyword">int</span> array<span class="token punctuation">[</span><span class="token number">100001</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numsSize<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        array<span class="token punctuation">[</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>array<span class="token punctuation">[</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">>=</span> <span class="token number">2</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>        
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><img src="/2021/08/31/%E5%89%91%E6%8C%87Offer03-%E6%95%B0%E7%BB%84%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97/image-20210831143910921.png" alt="image-20210831143910921"></p>
+<p>另一种解法</p>
+<p><strong>性能分析</strong></p>
+<p>时间复杂度：$O(nlogn)$​​​​</p>
+<p>空间复杂度：$O(n)$</p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">cmpfunc</span> <span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">void</span> <span class="token operator">*</span> a<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">void</span> <span class="token operator">*</span> b<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+   <span class="token keyword">return</span> <span class="token punctuation">(</span> <span class="token operator">*</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span><span class="token punctuation">)</span>a <span class="token operator">-</span> <span class="token operator">*</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span><span class="token punctuation">)</span>b <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">findRepeatNumber</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span> nums<span class="token punctuation">,</span> <span class="token keyword">int</span> numsSize<span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+    <span class="token function">qsort</span><span class="token punctuation">(</span>nums<span class="token punctuation">,</span> numsSize<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">,</span> cmpfunc<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numsSize<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> nums<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><img src="/2021/08/31/%E5%89%91%E6%8C%87Offer03-%E6%95%B0%E7%BB%84%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97/image-20210831143329640.png" alt="image-20210831143329640"></p>
+]]></content>
+      <categories>
+        <category>数据结构与算法</category>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>数组</tag>
+        <tag>散列表</tag>
+        <tag>快速排序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>最大连续1的个数</title>
+    <url>/2021/08/31/%E6%9C%80%E5%A4%A7%E8%BF%9E%E7%BB%AD1%E7%9A%84%E4%B8%AA%E6%95%B0/</url>
+    <content><![CDATA[<h4 id="485-最大连续-1-的个数"><a href="#485-最大连续-1-的个数" class="headerlink" title="485. 最大连续 1 的个数"></a><a href="https://leetcode-cn.com/problems/max-consecutive-ones/">485. 最大连续 1 的个数</a></h4><p>难度：简单</p>
+<hr>
+<p>给定一个二进制数组， 计算其中最大连续 1 的个数。</p>
+<p><strong>示例：</strong></p>
+<pre><code>输入：[1,1,0,1,1,1]
+输出：3
+解释：开头的两位和最后的三位都是连续 1 ，所以最大连续 1 的个数是 3.
+</code></pre>
+<p><strong>提示：</strong></p>
+<ul>
+<li>输入的数组只包含 <code>0</code> 和 <code>1</code> 。</li>
+<li>输入数组的长度是正整数，且不超过 10,000。</li>
+</ul>
+<p>通过次数118,530</p>
+<p>提交次数195,441</p>
+<p><strong>性能分析</strong></p>
+<p>时间复杂度：$O(n)$​​​​</p>
+<p>空间复杂度：$O(1)$</p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">findMaxConsecutiveOnes</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span> nums<span class="token punctuation">,</span> <span class="token keyword">int</span> numsSize<span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+    <span class="token keyword">int</span> max <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> tmp <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numsSize<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>tmp <span class="token operator">></span> max<span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                max <span class="token operator">=</span> tmp<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            tmp <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span>
+        <span class="token punctuation">{</span>
+            tmp<span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>tmp <span class="token operator">></span> max<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        max <span class="token operator">=</span> tmp<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">return</span> max<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><img src="/2021/08/31/%E6%9C%80%E5%A4%A7%E8%BF%9E%E7%BB%AD1%E7%9A%84%E4%B8%AA%E6%95%B0/image-20210831141528103.png" alt="image-20210831141528103"></p>
+]]></content>
+      <categories>
+        <category>数据结构与算法</category>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>数组</tag>
+      </tags>
+  </entry>
 </search>
