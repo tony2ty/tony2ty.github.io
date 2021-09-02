@@ -10247,4 +10247,68 @@ bool <span class="token function">canMakeArithmeticProgression</span><span class
         <tag>散列表</tag>
       </tags>
   </entry>
+  <entry>
+    <title>剑指Offer22.链表中倒数第k个节点</title>
+    <url>/2021/09/02/%E5%89%91%E6%8C%87Offer22-%E9%93%BE%E8%A1%A8%E4%B8%AD%E5%80%92%E6%95%B0%E7%AC%ACk%E4%B8%AA%E8%8A%82%E7%82%B9/</url>
+    <content><![CDATA[<h4 id="剑指-Offer-22-链表中倒数第k个节点"><a href="#剑指-Offer-22-链表中倒数第k个节点" class="headerlink" title="剑指 Offer 22. 链表中倒数第k个节点"></a><a href="https://leetcode-cn.com/problems/lian-biao-zhong-dao-shu-di-kge-jie-dian-lcof/">剑指 Offer 22. 链表中倒数第k个节点</a></h4><p>难度：简单</p>
+<hr>
+<p>输入一个链表，输出该链表中倒数第k个节点。为了符合大多数人的习惯，本题从1开始计数，即链表的尾节点是倒数第1个节点。</p>
+<p>例如，一个链表有 <code>6</code> 个节点，从头节点开始，它们的值依次是 <code>1、2、3、4、5、6</code>。这个链表的倒数第 <code>3</code> 个节点是值为 <code>4</code> 的节点。</p>
+<p><strong>示例：</strong></p>
+<pre><code>给定一个链表: 1-&gt;2-&gt;3-&gt;4-&gt;5, 和 k = 2.
+
+返回链表 4-&gt;5.
+</code></pre>
+<p>通过次数222,429</p>
+<p>提交次数280,854</p>
+<p><strong>性能分析</strong></p>
+<p>时间复杂度：$O(n)$​​​​</p>
+<p>空间复杂度：$O(1)$</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     struct ListNode *next;
+ * };
+ */</span>
+
+
+<span class="token keyword">struct</span> ListNode<span class="token operator">*</span> <span class="token function">getKthFromEnd</span><span class="token punctuation">(</span><span class="token keyword">struct</span> ListNode<span class="token operator">*</span> head<span class="token punctuation">,</span> <span class="token keyword">int</span> k<span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+    <span class="token keyword">int</span> cnt <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> target <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">struct</span> ListNode <span class="token operator">*</span>plist <span class="token operator">=</span> head<span class="token punctuation">;</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>head <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        cnt<span class="token operator">++</span><span class="token punctuation">;</span>
+        head <span class="token operator">=</span> head<span class="token operator">-></span>next<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">// printf("%d\n", cnt);</span>
+    
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>k <span class="token operator">></span> cnt<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    target <span class="token operator">=</span> cnt <span class="token operator">-</span>  k<span class="token punctuation">;</span>
+
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>target <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        plist <span class="token operator">=</span> plist<span class="token operator">-></span>next<span class="token punctuation">;</span>
+        target<span class="token operator">--</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token keyword">return</span> plist<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><img src="/2021/09/02/%E5%89%91%E6%8C%87Offer22-%E9%93%BE%E8%A1%A8%E4%B8%AD%E5%80%92%E6%95%B0%E7%AC%ACk%E4%B8%AA%E8%8A%82%E7%82%B9/image-20210902092519370.png" alt="image-20210902092519370"></p>
+]]></content>
+      <categories>
+        <category>数据结构与算法</category>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>链表</tag>
+      </tags>
+  </entry>
 </search>
