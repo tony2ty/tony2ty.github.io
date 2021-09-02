@@ -20,23 +20,22 @@
     var CONFIG = {"hostname":"tony2ty.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="剑指OfferII038.每日温度">
+  <meta name="description" content="在排序数组中查找元素的第一个和最后一个位置">
 <meta property="og:type" content="article">
-<meta property="og:title" content="剑指OfferII038.每日温度">
-<meta property="og:url" content="https://tony2ty.github.io/2021/08/20/%E5%89%91%E6%8C%87OfferII038-%E6%AF%8F%E6%97%A5%E6%B8%A9%E5%BA%A6/index.html">
+<meta property="og:title" content="在排序数组中查找元素的第一个和最后一个位置">
+<meta property="og:url" content="https://tony2ty.github.io/2021/09/02/%E5%9C%A8%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E6%9F%A5%E6%89%BE%E5%85%83%E7%B4%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%92%8C%E6%9C%80%E5%90%8E%E4%B8%80%E4%B8%AA%E4%BD%8D%E7%BD%AE/index.html">
 <meta property="og:site_name" content="Stay Hungry Stay Foolish">
-<meta property="og:description" content="剑指OfferII038.每日温度">
+<meta property="og:description" content="在排序数组中查找元素的第一个和最后一个位置">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://tony2ty.github.io/2021/08/20/%E5%89%91%E6%8C%87OfferII038-%E6%AF%8F%E6%97%A5%E6%B8%A9%E5%BA%A6/image-20210820093628106.png">
-<meta property="article:published_time" content="2021-08-20T01:35:19.000Z">
-<meta property="article:modified_time" content="2021-08-20T01:37:27.864Z">
+<meta property="og:image" content="https://tony2ty.github.io/2021/09/02/%E5%9C%A8%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E6%9F%A5%E6%89%BE%E5%85%83%E7%B4%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%92%8C%E6%9C%80%E5%90%8E%E4%B8%80%E4%B8%AA%E4%BD%8D%E7%BD%AE/image-20210902204250628.png">
+<meta property="article:published_time" content="2021-09-02T12:40:25.000Z">
+<meta property="article:modified_time" content="2021-09-02T12:43:32.452Z">
 <meta property="article:author" content="理性乐观π">
 <meta property="article:tag" content="数组">
-<meta property="article:tag" content="单调栈">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://tony2ty.github.io/2021/08/20/%E5%89%91%E6%8C%87OfferII038-%E6%AF%8F%E6%97%A5%E6%B8%A9%E5%BA%A6/image-20210820093628106.png">
+<meta name="twitter:image" content="https://tony2ty.github.io/2021/09/02/%E5%9C%A8%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E6%9F%A5%E6%89%BE%E5%85%83%E7%B4%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%92%8C%E6%9C%80%E5%90%8E%E4%B8%80%E4%B8%AA%E4%BD%8D%E7%BD%AE/image-20210902204250628.png">
 
-<link rel="canonical" href="https://tony2ty.github.io/2021/08/20/%E5%89%91%E6%8C%87OfferII038-%E6%AF%8F%E6%97%A5%E6%B8%A9%E5%BA%A6/">
+<link rel="canonical" href="https://tony2ty.github.io/2021/09/02/%E5%9C%A8%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E6%9F%A5%E6%89%BE%E5%85%83%E7%B4%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%92%8C%E6%9C%80%E5%90%8E%E4%B8%80%E4%B8%AA%E4%BD%8D%E7%BD%AE/">
 
 
 <script id="page-configurations">
@@ -49,7 +48,7 @@
   };
 </script>
 
-  <title>剑指OfferII038.每日温度 | Stay Hungry Stay Foolish</title>
+  <title>在排序数组中查找元素的第一个和最后一个位置 | Stay Hungry Stay Foolish</title>
   
 
 
@@ -197,7 +196,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://tony2ty.github.io/2021/08/20/%E5%89%91%E6%8C%87OfferII038-%E6%AF%8F%E6%97%A5%E6%B8%A9%E5%BA%A6/">
+    <link itemprop="mainEntityOfPage" href="https://tony2ty.github.io/2021/09/02/%E5%9C%A8%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E6%9F%A5%E6%89%BE%E5%85%83%E7%B4%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%92%8C%E6%9C%80%E5%90%8E%E4%B8%80%E4%B8%AA%E4%BD%8D%E7%BD%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -210,7 +209,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          剑指OfferII038.每日温度
+          在排序数组中查找元素的第一个和最后一个位置
         </h1>
 
         <div class="post-meta">
@@ -221,7 +220,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-08-20 09:35:19 / 修改时间：09:37:27" itemprop="dateCreated datePublished" datetime="2021-08-20T09:35:19+08:00">2021-08-20</time>
+              <time title="创建时间：2021-09-02 20:40:25 / 修改时间：20:43:32" itemprop="dateCreated datePublished" datetime="2021-09-02T20:40:25+08:00">2021-09-02</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -250,7 +249,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.2k</span>
+              <span>1.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -259,7 +258,7 @@
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               <span>1 分钟</span>
             </span>
-            <div class="post-description">剑指OfferII038.每日温度</div>
+            <div class="post-description">在排序数组中查找元素的第一个和最后一个位置</div>
 
         </div>
       </header>
@@ -270,67 +269,90 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h4 id="剑指-Offer-II-038-每日温度"><a href="#剑指-Offer-II-038-每日温度" class="headerlink" title="剑指 Offer II 038. 每日温度"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/iIQa4I/">剑指 Offer II 038. 每日温度</a></h4><p>难度：中等</p>
+        <h4 id="34-在排序数组中查找元素的第一个和最后一个位置"><a href="#34-在排序数组中查找元素的第一个和最后一个位置" class="headerlink" title="34. 在排序数组中查找元素的第一个和最后一个位置"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array/">34. 在排序数组中查找元素的第一个和最后一个位置</a></h4><p>难度：中等</p>
 <hr>
-<p>请根据每日 <code>气温</code> 列表 <code>temperatures</code> ，重新生成一个列表，要求其对应位置的输出为：要想观测到更高的气温，至少需要等待的天数。如果气温在这之后都不会升高，请在该位置用 <code>0</code> 来代替。</p>
-<p><strong>示例 1:</strong></p>
-<pre><code>输入: temperatures = [73,74,75,71,69,72,76,73]
-输出: [1,1,4,2,1,1,0,0]
+<p>给定一个按照升序排列的整数数组 <code>nums</code>，和一个目标值 <code>target</code>。找出给定目标值在数组中的开始位置和结束位置。</p>
+<p>如果数组中不存在目标值 <code>target</code>，返回 <code>[-1, -1]</code>。</p>
+<p><strong>进阶：</strong></p>
+<ul>
+<li>你可以设计并实现时间复杂度为 <code>O(log n)</code> 的算法解决此问题吗？</li>
+</ul>
+<p><strong>示例 1：</strong></p>
+<pre><code>输入：nums = [5,7,7,8,8,10], target = 8
+输出：[3,4]
 </code></pre>
-<p><strong>示例 2:</strong></p>
-<pre><code>输入: temperatures = [30,40,50,60]
-输出: [1,1,1,0]
+<p><strong>示例 2：</strong></p>
+<pre><code>输入：nums = [5,7,7,8,8,10], target = 6
+输出：[-1,-1]
 </code></pre>
-<p><strong>示例 3:</strong></p>
-<pre><code>输入: temperatures = [30,60,90]
-输出: [1,1,0]
+<p><strong>示例 3：</strong></p>
+<pre><code>输入：nums = [], target = 0
+输出：[-1,-1]
 </code></pre>
 <p><strong>提示：</strong></p>
 <ul>
-<li><code>1 &lt;= temperatures.length &lt;= 105</code></li>
-<li><code>30 &lt;= temperatures[i] &lt;= 100</code></li>
+<li><code>0 &lt;= nums.length &lt;= 105</code></li>
+<li><code>-109 &lt;= nums[i] &lt;= 109</code></li>
+<li><code>nums</code> 是一个非递减数组</li>
+<li><code>-109 &lt;= target &lt;= 109</code></li>
 </ul>
-<p>注意：本题与主站 739 题相同： <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/daily-temperatures/">https://leetcode-cn.com/problems/daily-temperatures/</a></p>
-<p>通过次数629</p>
-<p>提交次数805</p>
+<p>通过次数323,811</p>
+<p>提交次数763,163</p>
 <p><strong>性能分析</strong></p>
 <p>时间复杂度：$O(n)$​​​​</p>
-<p>空间复杂度：$O(n)$</p>
+<p>空间复杂度：$O(1)$</p>
 <pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/**
  * Note: The returned array must be malloced, assume caller calls free().
  */</span>
-<span class="token keyword">int</span><span class="token operator">*</span> <span class="token function">dailyTemperatures</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span> temperatures<span class="token punctuation">,</span> <span class="token keyword">int</span> temperaturesSize<span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token operator">*</span> returnSize<span class="token punctuation">)</span><span class="token punctuation">{</span>
+<span class="token keyword">int</span><span class="token operator">*</span> <span class="token function">searchRange</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span> nums<span class="token punctuation">,</span> <span class="token keyword">int</span> numsSize<span class="token punctuation">,</span> <span class="token keyword">int</span> target<span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token operator">*</span> returnSize<span class="token punctuation">)</span><span class="token punctuation">{</span>
 
-    <span class="token keyword">int</span> <span class="token operator">*</span>stack <span class="token operator">=</span> <span class="token function">malloc</span><span class="token punctuation">(</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span> <span class="token operator">*</span> temperaturesSize<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> top <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">// int *temper = malloc(sizeof(int) * temperaturesSize);</span>
-    <span class="token function">memset</span><span class="token punctuation">(</span>stack<span class="token punctuation">,</span> <span class="token number">0x00</span><span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span> <span class="token operator">*</span> temperaturesSize<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">// memset(temper, 0x00, sizeof(int) * temperaturesSize);</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> temperaturesSize<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token keyword">int</span> i<span class="token punctuation">,</span> j<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> start<span class="token punctuation">,</span> end<span class="token punctuation">;</span>
+
+    <span class="token keyword">int</span> <span class="token operator">*</span>array <span class="token operator">=</span> <span class="token function">malloc</span><span class="token punctuation">(</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">*</span>returnSize  <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+
+    array<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+    array<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>numsSize <span class="token operator">==</span> <span class="token number">0</span> <span class="token operator">||</span> target <span class="token operator">&lt;</span> nums<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">||</span> target <span class="token operator">></span> nums<span class="token punctuation">[</span>numsSize <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">// printf("a %d %d\n", top, i);</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span>top <span class="token operator">>=</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> temperatures<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">></span> temperatures<span class="token punctuation">[</span>stack<span class="token punctuation">[</span>top<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> array<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    start <span class="token operator">=</span> end <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numsSize<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> target<span class="token punctuation">)</span>
         <span class="token punctuation">{</span>
-            <span class="token comment" spellcheck="true">// printf("b %d %d %d\n", temperatures[i], temperatures[stack[top]], stack[top]);</span>
-            temperatures<span class="token punctuation">[</span>stack<span class="token punctuation">[</span>top<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> i <span class="token operator">-</span> stack<span class="token punctuation">[</span>top<span class="token punctuation">]</span><span class="token punctuation">;</span>
-            top<span class="token operator">--</span><span class="token punctuation">;</span>
+            start <span class="token operator">=</span> i<span class="token punctuation">;</span>            
+            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> numsSize<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>nums<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">==</span> target<span class="token punctuation">)</span>
+                <span class="token punctuation">{</span>
+                    end <span class="token operator">=</span> j<span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
-
-        stack<span class="token punctuation">[</span><span class="token operator">++</span>top<span class="token punctuation">]</span> <span class="token operator">=</span> i<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
-    <span class="token keyword">while</span> <span class="token punctuation">(</span>top <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>start <span class="token operator">!=</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token operator">&amp;&amp;</span> end <span class="token operator">!=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
-        temperatures<span class="token punctuation">[</span>stack<span class="token punctuation">[</span>top<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-        top<span class="token operator">--</span><span class="token punctuation">;</span>
+        array<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> start<span class="token punctuation">;</span>
+        array<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> end<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>start <span class="token operator">!=</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token operator">&amp;&amp;</span> end <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        array<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> start<span class="token punctuation">;</span>
+        array<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> start<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
-    <span class="token operator">*</span>returnSize <span class="token operator">=</span> temperaturesSize<span class="token punctuation">;</span>
-    <span class="token function">free</span><span class="token punctuation">(</span>stack<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> temperatures<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> array<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p><img src="/2021/08/20/%E5%89%91%E6%8C%87OfferII038-%E6%AF%8F%E6%97%A5%E6%B8%A9%E5%BA%A6/image-20210820093628106.png" alt="image-20210820093628106"></p>
+<p><img src="/2021/09/02/%E5%9C%A8%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E6%9F%A5%E6%89%BE%E5%85%83%E7%B4%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%92%8C%E6%9C%80%E5%90%8E%E4%B8%80%E4%B8%AA%E4%BD%8D%E7%BD%AE/image-20210902204250628.png" alt="image-20210902204250628"></p>
 
     </div>
 
@@ -366,7 +388,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://tony2ty.github.io/2021/08/20/%E5%89%91%E6%8C%87OfferII038-%E6%AF%8F%E6%97%A5%E6%B8%A9%E5%BA%A6/" title="剑指OfferII038.每日温度">https://tony2ty.github.io/2021/08/20/剑指OfferII038-每日温度/</a>
+    <a href="https://tony2ty.github.io/2021/09/02/%E5%9C%A8%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E6%9F%A5%E6%89%BE%E5%85%83%E7%B4%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%92%8C%E6%9C%80%E5%90%8E%E4%B8%80%E4%B8%AA%E4%BD%8D%E7%BD%AE/" title="在排序数组中查找元素的第一个和最后一个位置">https://tony2ty.github.io/2021/09/02/在排序数组中查找元素的第一个和最后一个位置/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -378,7 +400,6 @@
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/%E6%95%B0%E7%BB%84/" rel="tag"># 数组</a>
-              <a href="/tags/%E5%8D%95%E8%B0%83%E6%A0%88/" rel="tag"># 单调栈</a>
           </div>
 
         
@@ -387,13 +408,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/08/20/%E5%94%AF%E4%B8%80%E5%85%83%E7%B4%A0%E7%9A%84%E5%92%8C/" rel="prev" title="唯一元素的和">
-      <i class="fa fa-chevron-left"></i> 唯一元素的和
+    <a href="/2021/09/02/%E5%89%91%E6%8C%87Offer22-%E9%93%BE%E8%A1%A8%E4%B8%AD%E5%80%92%E6%95%B0%E7%AC%ACk%E4%B8%AA%E8%8A%82%E7%82%B9/" rel="prev" title="剑指Offer22.链表中倒数第k个节点">
+      <i class="fa fa-chevron-left"></i> 剑指Offer22.链表中倒数第k个节点
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/08/21/%E5%89%91%E6%8C%87OfferII006-%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E4%B8%A4%E4%B8%AA%E6%95%B0%E5%AD%97%E4%B9%8B%E5%92%8C/" rel="next" title="剑指OfferII006.排序数组中两个数字之和">
-      剑指OfferII006.排序数组中两个数字之和 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
