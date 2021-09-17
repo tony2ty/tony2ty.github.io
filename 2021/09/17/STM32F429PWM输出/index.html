@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.jpg">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"tony2ty.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="STM32F429PWM输出">
+<meta property="og:type" content="article">
+<meta property="og:title" content="STM32F429PWM输出">
+<meta property="og:url" content="https://tony2ty.github.io/2021/09/17/STM32F429PWM%E8%BE%93%E5%87%BA/index.html">
+<meta property="og:site_name" content="Stay Hungry Stay Foolish">
+<meta property="og:description" content="STM32F429PWM输出">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tony2ty.github.io/2021/09/17/STM32F429PWM%E8%BE%93%E5%87%BA/image-20210917083411379.png">
+<meta property="og:image" content="https://tony2ty.github.io/2021/09/17/STM32F429PWM%E8%BE%93%E5%87%BA/image-20210917083955508.png">
+<meta property="article:published_time" content="2021-09-17T00:31:17.000Z">
+<meta property="article:modified_time" content="2021-09-17T00:42:53.729Z">
+<meta property="article:author" content="理性乐观π">
+<meta property="article:tag" content="TIMER">
+<meta property="article:tag" content="PWM">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tony2ty.github.io/2021/09/17/STM32F429PWM%E8%BE%93%E5%87%BA/image-20210917083411379.png">
+
+<link rel="canonical" href="https://tony2ty.github.io/2021/09/17/STM32F429PWM%E8%BE%93%E5%87%BA/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>STM32F429PWM输出 | Stay Hungry Stay Foolish</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Stay Hungry Stay Foolish</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">32</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">10</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">145</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://tony2ty.github.io/2021/09/17/STM32F429PWM%E8%BE%93%E5%87%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="理性乐观π">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay Hungry Stay Foolish">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          STM32F429PWM输出
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-09-17 08:31:17 / 修改时间：08:42:53" itemprop="dateCreated datePublished" datetime="2021-09-17T08:31:17+08:00">2021-09-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/" itemprop="url" rel="index"><span itemprop="name">嵌入式</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/STM32/" itemprop="url" rel="index"><span itemprop="name">STM32</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+            <div class="post-description">STM32F429PWM输出</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><strong>硬件</strong></p>
+<p>NUCLEO-F429ZI开发板</p>
+<p><strong>软件</strong></p>
+<p>KEIL</p>
+<p>LL库</p>
+<p><strong>STM32CubeMX配置</strong></p>
+<p><img src="/2021/09/17/STM32F429PWM%E8%BE%93%E5%87%BA/image-20210917083411379.png" alt="image-20210917083411379"></p>
+<p><strong>代码</strong></p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">MX_TIM1_Init</span><span class="token punctuation">(</span>uint32_t period<span class="token punctuation">,</span> uint32_t pulse<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">LL_TIM_GetAutoReload</span><span class="token punctuation">(</span>TIM1<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token punctuation">(</span>period <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> 
+        <span class="token operator">&amp;&amp;</span> <span class="token function">LL_TIM_OC_GetCompareCH1</span><span class="token punctuation">(</span>TIM1<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token punctuation">(</span>pulse <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+  <span class="token comment" spellcheck="true">/* USER CODE BEGIN TIM1_Init 0 */</span>
+    uint32_t uhPrescalerValue <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>    
+    uhPrescalerValue <span class="token operator">=</span> <span class="token punctuation">(</span>uint32_t<span class="token punctuation">)</span><span class="token punctuation">(</span>SystemCoreClock <span class="token operator">/</span> <span class="token number">1200</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 60000 - 1 ¼´1.2K</span>
+<span class="token comment" spellcheck="true">//    LL_TIM_DeInit(TIM1);</span>
+  <span class="token comment" spellcheck="true">/* USER CODE END TIM1_Init 0 */</span>
+
+  LL_TIM_InitTypeDef TIM_InitStruct <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+  LL_TIM_OC_InitTypeDef TIM_OC_InitStruct <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+  LL_TIM_BDTR_InitTypeDef TIM_BDTRInitStruct <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  LL_GPIO_InitTypeDef GPIO_InitStruct <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token comment" spellcheck="true">/* Peripheral clock enable */</span>
+  <span class="token function">LL_APB2_GRP1_EnableClock</span><span class="token punctuation">(</span>LL_APB2_GRP1_PERIPH_TIM1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment" spellcheck="true">/* USER CODE BEGIN TIM1_Init 1 */</span>
+
+  <span class="token comment" spellcheck="true">/* USER CODE END TIM1_Init 1 */</span>
+  TIM_InitStruct<span class="token punctuation">.</span>Prescaler <span class="token operator">=</span> uhPrescalerValue<span class="token punctuation">;</span>
+  TIM_InitStruct<span class="token punctuation">.</span>CounterMode <span class="token operator">=</span> LL_TIM_COUNTERMODE_UP<span class="token punctuation">;</span>
+  TIM_InitStruct<span class="token punctuation">.</span>Autoreload <span class="token operator">=</span> <span class="token punctuation">(</span>period <span class="token operator">&lt;=</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">?</span> <span class="token number">0</span> <span class="token punctuation">:</span> <span class="token punctuation">(</span>period <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  TIM_InitStruct<span class="token punctuation">.</span>ClockDivision <span class="token operator">=</span> LL_TIM_CLOCKDIVISION_DIV1<span class="token punctuation">;</span>
+  TIM_InitStruct<span class="token punctuation">.</span>RepetitionCounter <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token function">LL_TIM_Init</span><span class="token punctuation">(</span>TIM1<span class="token punctuation">,</span> <span class="token operator">&amp;</span>TIM_InitStruct<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">LL_TIM_DisableARRPreload</span><span class="token punctuation">(</span>TIM1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">LL_TIM_OC_EnablePreload</span><span class="token punctuation">(</span>TIM1<span class="token punctuation">,</span> LL_TIM_CHANNEL_CH1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  TIM_OC_InitStruct<span class="token punctuation">.</span>OCMode <span class="token operator">=</span> LL_TIM_OCMODE_PWM1<span class="token punctuation">;</span>
+  TIM_OC_InitStruct<span class="token punctuation">.</span>OCState <span class="token operator">=</span> LL_TIM_OCSTATE_DISABLE<span class="token punctuation">;</span>
+  TIM_OC_InitStruct<span class="token punctuation">.</span>OCNState <span class="token operator">=</span> LL_TIM_OCSTATE_DISABLE<span class="token punctuation">;</span>
+  TIM_OC_InitStruct<span class="token punctuation">.</span>CompareValue <span class="token operator">=</span> <span class="token punctuation">(</span>pulse <span class="token operator">&lt;=</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">?</span> <span class="token number">0</span> <span class="token punctuation">:</span> <span class="token punctuation">(</span>pulse <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  TIM_OC_InitStruct<span class="token punctuation">.</span>OCPolarity <span class="token operator">=</span> LL_TIM_OCPOLARITY_HIGH<span class="token punctuation">;</span>
+  TIM_OC_InitStruct<span class="token punctuation">.</span>OCNPolarity <span class="token operator">=</span> LL_TIM_OCPOLARITY_HIGH<span class="token punctuation">;</span>
+  TIM_OC_InitStruct<span class="token punctuation">.</span>OCIdleState <span class="token operator">=</span> LL_TIM_OCIDLESTATE_LOW<span class="token punctuation">;</span>
+  TIM_OC_InitStruct<span class="token punctuation">.</span>OCNIdleState <span class="token operator">=</span> LL_TIM_OCIDLESTATE_LOW<span class="token punctuation">;</span>
+  <span class="token function">LL_TIM_OC_Init</span><span class="token punctuation">(</span>TIM1<span class="token punctuation">,</span> LL_TIM_CHANNEL_CH1<span class="token punctuation">,</span> <span class="token operator">&amp;</span>TIM_OC_InitStruct<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">LL_TIM_OC_DisableFast</span><span class="token punctuation">(</span>TIM1<span class="token punctuation">,</span> LL_TIM_CHANNEL_CH1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">LL_TIM_SetTriggerOutput</span><span class="token punctuation">(</span>TIM1<span class="token punctuation">,</span> LL_TIM_TRGO_RESET<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">LL_TIM_DisableMasterSlaveMode</span><span class="token punctuation">(</span>TIM1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  TIM_BDTRInitStruct<span class="token punctuation">.</span>OSSRState <span class="token operator">=</span> LL_TIM_OSSR_DISABLE<span class="token punctuation">;</span>
+  TIM_BDTRInitStruct<span class="token punctuation">.</span>OSSIState <span class="token operator">=</span> LL_TIM_OSSI_DISABLE<span class="token punctuation">;</span>
+  TIM_BDTRInitStruct<span class="token punctuation">.</span>LockLevel <span class="token operator">=</span> LL_TIM_LOCKLEVEL_OFF<span class="token punctuation">;</span>
+  TIM_BDTRInitStruct<span class="token punctuation">.</span>DeadTime <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  TIM_BDTRInitStruct<span class="token punctuation">.</span>BreakState <span class="token operator">=</span> LL_TIM_BREAK_DISABLE<span class="token punctuation">;</span>
+  TIM_BDTRInitStruct<span class="token punctuation">.</span>BreakPolarity <span class="token operator">=</span> LL_TIM_BREAK_POLARITY_HIGH<span class="token punctuation">;</span>
+  TIM_BDTRInitStruct<span class="token punctuation">.</span>AutomaticOutput <span class="token operator">=</span> LL_TIM_AUTOMATICOUTPUT_DISABLE<span class="token punctuation">;</span>
+  <span class="token function">LL_TIM_BDTR_Init</span><span class="token punctuation">(</span>TIM1<span class="token punctuation">,</span> <span class="token operator">&amp;</span>TIM_BDTRInitStruct<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment" spellcheck="true">/* USER CODE BEGIN TIM1_Init 2 */</span>
+
+  <span class="token comment" spellcheck="true">/* USER CODE END TIM1_Init 2 */</span>
+  <span class="token function">LL_AHB1_GRP1_EnableClock</span><span class="token punctuation">(</span>LL_AHB1_GRP1_PERIPH_GPIOE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">/**TIM1 GPIO Configuration
+    PE9     ------> TIM1_CH1
+    */</span>
+  GPIO_InitStruct<span class="token punctuation">.</span>Pin <span class="token operator">=</span> LL_GPIO_PIN_9<span class="token punctuation">;</span>
+  GPIO_InitStruct<span class="token punctuation">.</span>Mode <span class="token operator">=</span> LL_GPIO_MODE_ALTERNATE<span class="token punctuation">;</span>
+  GPIO_InitStruct<span class="token punctuation">.</span>Speed <span class="token operator">=</span> LL_GPIO_SPEED_FREQ_LOW<span class="token punctuation">;</span>
+  GPIO_InitStruct<span class="token punctuation">.</span>OutputType <span class="token operator">=</span> LL_GPIO_OUTPUT_PUSHPULL<span class="token punctuation">;</span>
+  GPIO_InitStruct<span class="token punctuation">.</span>Pull <span class="token operator">=</span> LL_GPIO_PULL_NO<span class="token punctuation">;</span>
+  GPIO_InitStruct<span class="token punctuation">.</span>Alternate <span class="token operator">=</span> LL_GPIO_AF_1<span class="token punctuation">;</span>
+  <span class="token function">LL_GPIO_Init</span><span class="token punctuation">(</span>GPIOE<span class="token punctuation">,</span> <span class="token operator">&amp;</span>GPIO_InitStruct<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  
+  <span class="token comment" spellcheck="true">/**************************/</span>
+  <span class="token comment" spellcheck="true">/* TIM2 interrupts set-up */</span>
+  <span class="token comment" spellcheck="true">/**************************/</span>
+  <span class="token comment" spellcheck="true">/* Enable the capture/compare interrupt for channel 1*/</span>
+<span class="token comment" spellcheck="true">//  LL_TIM_EnableIT_CC1(TIM1);</span>
+  <span class="token function">LL_TIM_EnableAllOutputs</span><span class="token punctuation">(</span>TIM1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment" spellcheck="true">/**********************************/</span>
+  <span class="token comment" spellcheck="true">/* Start output signal generation */</span>
+  <span class="token comment" spellcheck="true">/**********************************/</span>
+  <span class="token comment" spellcheck="true">/* Enable output channel 1 */</span>
+  <span class="token function">LL_TIM_CC_EnableChannel</span><span class="token punctuation">(</span>TIM1<span class="token punctuation">,</span> LL_TIM_CHANNEL_CH1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  
+  <span class="token comment" spellcheck="true">/* Enable counter */</span>
+  <span class="token function">LL_TIM_EnableCounter</span><span class="token punctuation">(</span>TIM1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  
+  <span class="token comment" spellcheck="true">/* Force update generation */</span>
+  <span class="token function">LL_TIM_GenerateEvent_UPDATE</span><span class="token punctuation">(</span>TIM1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><strong>问题</strong></p>
+<ol>
+<li><p>PWM输出占空比100%异常的问题</p>
+<p>将ton与period周期值设置相同后，通过逻辑分析仪测试发现占空比无法达到100%。查看手册可知需要将ton（CCRx）大于period（ARR）周期值才能输出占空比100%。</p>
+</li>
+</ol>
+<p><img src="/2021/09/17/STM32F429PWM%E8%BE%93%E5%87%BA/image-20210917083955508.png" alt="image-20210917083955508"></p>
+<ol start="2">
+<li><p>PWM输出的最大频率问题</p>
+<p>PWM输出的最大频率即为TIMER所在总线频率/定时器的分频系数。如果TIMER是16位，频率基本没法超过1Hz。此时应该考虑使用32位TIMER。</p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="理性乐观π 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="理性乐观π 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>理性乐观π
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://tony2ty.github.io/2021/09/17/STM32F429PWM%E8%BE%93%E5%87%BA/" title="STM32F429PWM输出">https://tony2ty.github.io/2021/09/17/STM32F429PWM输出/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/TIMER/" rel="tag"># TIMER</a>
+              <a href="/tags/PWM/" rel="tag"># PWM</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/09/17/%E5%89%91%E6%8C%87OfferII068-%E6%9F%A5%E6%89%BE%E6%8F%92%E5%85%A5%E4%BD%8D%E7%BD%AE/" rel="prev" title="剑指OfferII068.查找插入位置">
+      <i class="fa fa-chevron-left"></i> 剑指OfferII068.查找插入位置
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="理性乐观π"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">理性乐观π</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">145</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/tony2ty" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;tony2ty" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:753919770@qq.com" title="E-Mail → mailto:753919770@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+	
+	  <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+	  <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+	  <div class="widget-wrap">
+		<h3 class="widget-title">标签云</h3>
+		<div id="myCanvasContainer" class="widget tagcloud">
+		  <canvas width="250" height="250" id="resCanvas" style="width:100%">
+			<ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BLE/" rel="tag">BLE</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Esp8266/" rel="tag">Esp8266</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IMX6ULL/" rel="tag">IMX6ULL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MQTT/" rel="tag">MQTT</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NRF52832/" rel="tag">NRF52832</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Onenet/" rel="tag">Onenet</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PWM/" rel="tag">PWM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TIMER/" rel="tag">TIMER</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/USB/" rel="tag">USB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gdb%E8%B0%83%E8%AF%95/" rel="tag">gdb调试</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E6%B3%95/" rel="tag">二分查找法</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" rel="tag">二叉树</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/" rel="tag">冒泡排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%A8%E6%80%81%E5%BA%93/" rel="tag">动态库</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag">动态规划</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%95%E8%B0%83%E6%A0%88/" rel="tag">单调栈</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88%E6%B3%95/" rel="tag">双指针法</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6/" rel="tag">可执行文件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag">字符串</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%82%E6%88%96%E6%B3%95/" rel="tag">异或法</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" rel="tag">快速排序</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8E%92%E5%BA%8F/" rel="tag">排序</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%A3%E5%88%97%E8%A1%A8/" rel="tag">散列表</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E7%BB%84/" rel="tag">数组</a><span class="tag-list-count">105</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9E%9A%E4%B8%BE%E6%B3%95/" rel="tag">枚举法</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A0%88/" rel="tag">栈</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BA%BF%E6%80%A7%E6%8E%92%E5%BA%8F/" rel="tag">线性排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A7%86%E9%A2%91%E7%9B%91%E6%8E%A7/" rel="tag">视频监控</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8F/" rel="tag">计数排序</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/" rel="tag">贪心算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%80%92%E5%BD%92/" rel="tag">递归</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%93%BE%E8%A1%A8/" rel="tag">链表</a><span class="tag-list-count">13</span></li></ul>
+		  </canvas>
+		</div>
+	  </div>
+	
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">理性乐观π</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">135k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:03</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
