@@ -11624,4 +11624,72 @@ for (int i = 0; i &lt; len; i++) &#123;
         <tag>PWM</tag>
       </tags>
   </entry>
+  <entry>
+    <title>最小时间差</title>
+    <url>/2021/09/18/%E6%9C%80%E5%B0%8F%E6%97%B6%E9%97%B4%E5%B7%AE/</url>
+    <content><![CDATA[<h4 id="539-最小时间差"><a href="#539-最小时间差" class="headerlink" title="539. 最小时间差"></a><a href="https://leetcode-cn.com/problems/minimum-time-difference/">539. 最小时间差</a></h4><p>难度：中等</p>
+<hr>
+<p>给定一个 24 小时制（小时:分钟 **”HH:MM”**）的时间列表，找出列表中任意两个时间的最小时间差并以分钟数表示。</p>
+<p><strong>示例 1：</strong></p>
+<pre><code>输入：timePoints = [&quot;23:59&quot;,&quot;00:00&quot;]
+输出：1
+</code></pre>
+<p><strong>示例 2：</strong></p>
+<pre><code>输入：timePoints = [&quot;00:00&quot;,&quot;23:59&quot;,&quot;00:00&quot;]
+输出：0
+</code></pre>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>2 &lt;= timePoints &lt;= 2 * 104</code></li>
+<li><code>timePoints[i]</code> 格式为 <strong>“HH:MM”</strong></li>
+</ul>
+<p>通过次数13,788</p>
+<p>提交次数23,121</p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">cmpfunc</span> <span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">void</span> <span class="token operator">*</span> a<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">void</span> <span class="token operator">*</span> b<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+   <span class="token keyword">return</span> <span class="token punctuation">(</span> <span class="token operator">*</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span><span class="token punctuation">)</span>a <span class="token operator">-</span> <span class="token operator">*</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span><span class="token punctuation">)</span>b <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">findMinDifference</span><span class="token punctuation">(</span><span class="token keyword">char</span> <span class="token operator">*</span><span class="token operator">*</span> timePoints<span class="token punctuation">,</span> <span class="token keyword">int</span> timePointsSize<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    
+    <span class="token keyword">int</span> array<span class="token punctuation">[</span>timePointsSize<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> hour<span class="token punctuation">,</span> minute<span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> timePointsSize<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">sscanf</span><span class="token punctuation">(</span>timePoints<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">"%d:%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>hour<span class="token punctuation">,</span> <span class="token operator">&amp;</span>minute<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        array<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> hour <span class="token operator">*</span> <span class="token number">60</span> <span class="token operator">+</span> minute<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token function">qsort</span><span class="token punctuation">(</span>array<span class="token punctuation">,</span> timePointsSize<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">,</span> cmpfunc<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">int</span> min <span class="token operator">=</span> array<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">-</span> array<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> timePointsSize<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>min <span class="token operator">></span> <span class="token punctuation">(</span>array<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">-</span> array<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            min <span class="token operator">=</span> array<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">-</span> array<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">int</span> diff <span class="token operator">=</span> array<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token number">1440</span> <span class="token operator">-</span> array<span class="token punctuation">[</span>timePointsSize <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>diff <span class="token operator">&lt;</span> min<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        min <span class="token operator">=</span> diff<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">return</span> min<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><img src="/2021/09/18/%E6%9C%80%E5%B0%8F%E6%97%B6%E9%97%B4%E5%B7%AE/%E6%8D%95%E8%8E%B7.PNG" alt="捕获"></p>
+]]></content>
+      <categories>
+        <category>数据结构与算法</category>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>数组</tag>
+      </tags>
+  </entry>
 </search>
