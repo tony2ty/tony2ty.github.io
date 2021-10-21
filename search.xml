@@ -11995,4 +11995,22 @@ for (int i = 0; i &lt; len; i++) &#123;
         <tag>GPS</tag>
       </tags>
   </entry>
+  <entry>
+    <title>imx6ull移植mosquitto错误解决</title>
+    <url>/2021/10/21/imx6ull%E7%A7%BB%E6%A4%8Dmosquitto%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3/</url>
+    <content><![CDATA[<p>错误提示</p>
+<blockquote>
+<p>relocation R_ARM_THM_MOVW_ABS_NC against `a local symbol’ can not be used when making a shared object; recompile with -fPIC</p>
+</blockquote>
+<p>通过网络搜索确认是编译的openssl库文件存在问题，即增加<code>-fPIC</code>选项重新编译即可通过。</p>
+<p><img src="/2021/10/21/imx6ull%E7%A7%BB%E6%A4%8Dmosquitto%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3/image-20211021214009259.png" alt="image-20211021214009259"></p>
+<p>CFLAG标志增加<code>-fPIC</code>选项</p>
+]]></content>
+      <categories>
+        <category>嵌入式Linux</category>
+      </categories>
+      <tags>
+        <tag>IMX6ULL</tag>
+      </tags>
+  </entry>
 </search>
